@@ -1,0 +1,87 @@
+.full-height {}
+
+.justify-center {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+    padding: 2.7em;
+}
+
+.line-label {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #a0a0a0;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+.line-label span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
+    margin-top: 3.8em;
+}
+
+.form-container input {
+    border-radius: 25px;
+    margin: 0.5em 0em;
+    padding: 0.35em 1.4em;
+    border: 1px solid #f0f0f0;
+}
+
+.justify-around {
+    display: flex;
+    justify-content: space-around;
+    width: 100% !important;
+}
+
+.primary-btn {
+    margin: 0.4em 4em;
+    padding: 0.35em;
+    border-radius: 25px;
+    color: white;
+    background-color: #06D6A0;
+    border: none;
+    font-weight: bold;
+}
+
+
+/* Style all font awesome icons */
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: #141518 !important;
+}
+
+
+/* Add a hover effect if you want */
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+a {
+    color: #FF004A !important;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.overlay[_ngcontent-pev-c40] {
+    border-radius: 25px !important;
+}

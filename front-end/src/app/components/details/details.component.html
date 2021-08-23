@@ -1,0 +1,92 @@
+<div class="container text-white text-center">
+
+    <nav>
+        <div class="container line p-3">
+            <div class="navigation">
+                <img src="../../../assets/profile.png" alt="" width="80">
+                <ul class="nav-list p-0 m-1">
+                    <li class="nav-item mr-2"><i class="fa fa-group"></i></li>
+                    <li class="nav-item mr-2"><i class="fa fa-home"></i></li>
+                    <li class="nav-item mr-2"><i class="fa fa-home"></i></li>
+                    <li class="nav-item mr-2"><i class="fa fa-bell"></i></li>
+                    <li class="nav-item mr-2"><i class="fa fa-gear"></i></li>
+                </ul>
+            </div>
+            <div class="actions">
+                <a href="">news</a>
+                <a href="">draft</a>
+                <a href="">x</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="smooth-ts p-0" [ngClass]="isExpanded ? 'col-md-4' : 'col-md-12'">
+            <div class="container">
+                <div class="row" [ngClass]="isExpanded ? 'col' : ''">
+                    <div class="col-md-6 mw-100">
+                        <div class="box text-center" (click)="expand()" [routerLink]="['/profile/name/details/orders']">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar ">
+                                <table class="table table-bordered table-striped mb-0 ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col ">Id</th>
+                                            <th scope="col ">Date</th>
+                                            <th scope="col ">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of [0,0,0,0,0,0,0,0,0] ">
+                                            <td>007</td>
+                                            <td>20/04/2020</td>
+                                            <td>25 EUR</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4>Orders</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mw-100 ">
+                        <div class="box text-center " (click)="expand()" [routerLink]="['/profile/name/details/inventory']">
+                            <div class=" table-wrapper-scroll-y my-custom-scrollbar ">
+                                <table class="table table-bordered table-striped mb-0 ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col ">Id</th>
+                                            <th scope="col "></th>
+                                            <th scope="col ">Name</th>
+                                            <th scope="col ">Q.ty</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of [0,0,0,0,0,0,0,0,0] ">
+                                            <td>003</td>
+                                            <td><img src="../../../assets/jacket.jpg " width="32 " alt=" "></td>
+                                            <td>Jacket</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h4>Inventory</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-anm p-0 " [ngClass]="isExpanded ? 'col-md-8 v-anm-active' : '' ">
+            <div class="container ">
+                <div class="opt-cnt text-black ">
+                    <div class="window-btn ">
+                        <a class="x-opt " (click)="expand() " [routerLink]="[ '/profile/name/details'] "><i class="fa fa-window-close "></i></a>
+                        <a class="v-opt "><i class="fa fa-check "></i></a>
+                    </div>
+
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

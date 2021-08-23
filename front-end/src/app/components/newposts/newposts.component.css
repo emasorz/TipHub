@@ -1,0 +1,155 @@
+.step-2 input,
+.step-2 textarea {
+    border: none;
+    border-bottom: 1.5px solid black;
+    resize: none;
+}
+
+.category {
+    padding: .5em 2em;
+    border-radius: 25px;
+    color: black;
+    font-weight: bold;
+    border: 1.5px solid black;
+    margin: .4em;
+    cursor: pointer;
+}
+
+.category:hover {
+    color: white;
+    background-color: black;
+}
+
+.select-grp {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    align-items: center;
+}
+
+.opts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.opts .opt {
+    padding: 0.1em 2em;
+    border: 1px solid black;
+    margin: 0.7em 1em;
+    border-radius: 5px;
+}
+
+.opts .select {
+    background-color: black;
+    color: white;
+}
+
+.select-grp select {
+    max-height: 2.2em;
+    padding: 0em 1em;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 0.7em 0.5em;
+}
+
+.inpt {
+    position: relative;
+    text-align: center;
+    display: flex;
+}
+
+.inpt label {
+    position: absolute;
+    top: -1.2em;
+    align-self: center;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.select-grp input {
+    max-height: 2em;
+    border-radius: 15px;
+    border: 1px solid black;
+    width: 5em;
+    margin: 0.7em 0.5em;
+}
+
+.cmr-btn {
+    margin: 0.7em 0.5em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+}
+
+.sum-opts {
+    display: flex;
+    justify-self: center;
+    color: black;
+    justify-content: center;
+}
+
+.sum-opts ul {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 0px;
+}
+
+.sum-opts ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.3em;
+}
+
+.line-grp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cls-btn {
+    background-color: black;
+    width: 17px;
+    height: 17px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.line-grp .opt {
+    padding: 0.3em 0.7em;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0.2em 0.5em;
+}
+
+.line-grp .opt-q {
+    padding: 0.3em 1.2em;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 0.2em 0.5em;
+}
+
+.sum-opts img {
+    padding: 0.4em;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.price::after {
+    content: ' EUR';
+}
+
+.opt {
+    cursor: pointer;
+}

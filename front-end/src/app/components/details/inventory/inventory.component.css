@@ -1,0 +1,46 @@
+.my-custom-scrollbar {
+    position: relative;
+    height: 19em;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.table {
+    background-color: white;
+    border: 5px;
+}
+
+.table * {
+    border: none;
+    padding: 0.2em;
+}
+
+td * {
+    align-self: center;
+}
+
+.expand {
+    color: white;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+}
+
+.qty {
+    width: 3em;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.box {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.4em;
+}

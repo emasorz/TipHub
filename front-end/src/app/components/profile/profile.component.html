@@ -1,0 +1,52 @@
+<div class="container-lg p-0">
+
+    <!-- Profile widget -->
+    <div class="media profile-header">
+        <div class="d-flex flex-row justify-content-beetween">
+            <div class="profile"><img src="https://i.pravatar.cc/150?img=12" alt="..." width="130"></div>
+            <div class="media-body text-white d-flex align-items-center">
+                <div class="prf-lbl pl-3 pt-1 text-nowrap">
+                    <h4 class="mt-0 mb-0">Manuella Tarly</h4>
+                    <p class="small p-0"> <i class="fa fa-at mr-2"></i>{{name}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-prm p-4 d-flex text-center w-100">
+            <ul class="list-inline mb-0 w-100 d-flex justify-content-around">
+                <li class="list-inline-item m-8">
+                    <h5 class="font-weight-bold mb-0 d-block">241K</h5><label class="social-icon"><i class="fa fa-instagram mr-1"></i></label>
+                </li>
+                <li class="list-inline-item m-8">
+                    <h5 class="font-weight-bold mb-0 d-block">84K</h5><label class="social-icon"> <i class="fa fa-facebook mr-1"></i></label>
+                </li>
+                <li class="list-inline-item m-8">
+                    <h5 class="font-weight-bold mb-0 d-block">241K</h5><label class="social-icon"><i class="fa fa-twitter mr-1"></i></label>
+                </li>
+                <li class="list-inline-item m-8">
+                    <h5 class="font-weight-bold mb-0 d-block">241K</h5><label class="social-icon"><i class="fa fa-twitch mr-1"></i></label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="py-4 px-4">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <div class="slider"></div>
+                    <li [routerLink]="['.','posts']" role="presentation" class="active"><a class="active" href="#home" aria-controls="home" role="tab" data-toggle="tab">Posts</a></li>
+                    <li [routerLink]="['.','trends']" role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Trends</a></li>
+                    <li [routerLink]="['.','flexs']" role="presentation" class=""><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Flex</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content pt-4">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

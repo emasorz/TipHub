@@ -1,0 +1,58 @@
+<ngx-spinner bdColor="rgba(0,0 ,0 , 0)" size="medium" color="#000" type="ball-spin" [fullScreen]="false"></ngx-spinner>
+<div class="opt-cnt d-flex flex-column h-100" style="position: relative">
+    <div class="row center p-1 mb-2">
+        <input class="s-npt" type="text" placeholder="Search template">
+    </div>
+
+
+    <button class="btn btn-primary m-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fa fa-plus"></i>
+    </button>
+
+    <div class="collapse align-items-end" id="collapseExample">
+        <div class="card card-body">
+            <div class="row start p-1 mb-2">
+                <input *ngIf="!newOption" (keyup.enter)="generateNewOption($event)" type="text" placeholder="Empty variant title">
+                <div *ngIf="newOption" class="d-flex flex-row w-100 flex-wrap">
+                    <div class="title opt text-capitalize">
+                        <div class="dlt-btn" (click)="unsetNewOption()"><i class="fa fa-times"></i></div>
+                        {{newOption.getTitle()}}
+                    </div>
+                    <div class="opt" *ngFor="let op of newOption.getOptions()">
+                        <div class="dlt-btn" (click)="newOption.removeOption(op)"><i class="fa fa-times"></i></div>
+                        {{op}}
+                    </div>
+                    <input #addOption type="text" placeholder="Insert an option" (keyup.enter)="newOption.addOption($event.target.value); addOption.value=''">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="submitNewOption()">Save</button>
+        </div>
+    </div>
+
+
+    <div class="options">
+        <div #option [id]="'variant-opt-' + i" [attr.data-status]="'default'" class="row start p-1 mb-2 w-100 variant-opt d-flex  flex-row justify-content-beetween flex-nowrap" *ngFor="let option of options; let i = index">
+            <input class="p-0 m-0" type="checkbox">
+            <div class="d-flex flex-row flex-wrap">
+                <div class="title opt m-2 text-capitalize">
+                    <div class="dlt-btn"><i class="fa fa-times"></i></div>
+                    {{option.getTitle()}}
+                </div>
+                <div class="opt m-2" *ngFor="let op of option.getOptions()">
+                    <div class="dlt-btn" (click)="option.removeOption(op)"><i class="fa fa-times"></i></div>
+                    {{op}}
+                </div>
+            </div>
+            <button (click)="edit('variant-opt-'+i)" class="btn btn-light align-self-end"><i class="fa fa-edit"></i></button>
+            <div class="edit d-flec flex-row">
+                <button class="btn btn-success" (click)="edit('variant-opt-'+i)"><i class="fa fa-check"></i></button>
+                <button class="btn btn-danger" (click)="edit('variant-opt-'+i)"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

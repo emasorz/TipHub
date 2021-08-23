@@ -1,0 +1,8 @@
+<div class="container text-white">
+    <h3>Instagram</h3>
+    <button (click)="this.socialservice.requestInstagramPermissions()">Instagram Access</button>
+    <h1>{{username}}</h1>
+    <div class="container">
+        <img *ngFor="let image of medias" src="{{image}}" widht="320" height="320" alt="">
+    </div>
+</div>

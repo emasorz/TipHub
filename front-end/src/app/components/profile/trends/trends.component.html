@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-2">
+        <ul class="filter text-white w-100">
+            <li class="filter-btn all">all</li>
+            <li class="filter-btn">clothes</li>
+            <li class="filter-btn">hoodies</li>
+            <li class="filter-btn selected">cap</li>
+            <li class="filter-btn selected">eletronics</li>
+            <li class="filter-btn">shoes</li>
+            <li class="filter-btn">uncategoriezed</li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <ul class="merch-grid-trends p-0 m-0">
+            <li data-toggle="modal" data-target=".bd-example-modal-lg" class="item-card p-2 d-flex justify-content-center align-items-center text-center btn mh-20">
+                <strong class="p-5">Nuovo Post</strong>
+            </li>
+            <li *ngFor="let post of productPosts" class="item-card p-2">
+                <div class="img-desc d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{post.img}}" alt="merch image" width="130">
+                    <p>{{post.description}}</p>
+                </div>
+                <h5>{{post.title}}</h5>
+                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                   Show Price
+                </a>
+                <a routerLink="/profile/name/product/jacket"> 
+                    See details
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <span class="price">65</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- modal for new post -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <app-newposts></app-newposts>
+        </div>
+    </div>
+</div>

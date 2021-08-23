@@ -1,0 +1,64 @@
+.wrp-cnt {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: max-content;
+}
+
+.drft-crd {
+    position: relative;
+    width: 12em;
+    background-color: white;
+    margin: 1.5em;
+    height: 8em;
+    border-radius: 5px;
+}
+
+.cls-btn {
+    position: absolute;
+    top: -1em;
+    right: 0.5em;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    color: white;
+    background-color: #ff004a;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cntr {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h3 {
+    color: white;
+}
+
+.ttl-nm {
+    position: relative;
+    left: -50%;
+    color: white
+}
+
+.abs-cntr {
+    position: absolute;
+    left: 50%;
+    bottom: -2em;
+}
+
+.rel {
+    position: relative;
+}
+
+.crd-bdy img {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+}

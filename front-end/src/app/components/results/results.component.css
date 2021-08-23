@@ -1,0 +1,41 @@
+.res-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.prf-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+}
+
+.prf-card sup {
+    color: #ff004a;
+    font-weight: bold;
+}
+
+.prf-card img {
+    border-radius: 50%;
+}
+
+.k::after {
+    content: 'K';
+}
+
+.m::after {
+    content: 'M';
+}
+
+.flw-btn {
+    padding: 1px 3em;
+    color: white;
+    background-color: #06D6A0;
+    border-radius: 18px;
+    cursor: pointer;
+}

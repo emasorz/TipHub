@@ -1,0 +1,63 @@
+.access {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.access button:nth-child(2) {
+    background-color: red;
+    padding: 0px 3em;
+    border-radius: 25px;
+    color: white;
+}
+
+.access button {
+    font-weight: bold;
+}
+
+.desc-section {
+    background-color: transparent;
+    min-height: 1000px;
+    color: white;
+    padding-top: 2em;
+}
+
+.desc-section p {
+    padding-left: 2.5em;
+    color: black;
+}
+
+.cstm-nav {
+    box-shadow: 0 4px 2px -2px rgba(51, 51, 51, 0.1);
+}
+
+.image-container img {
+    width: 93%;
+    padding: 3.5em;
+}
+
+.tl,
+.tr,
+.bl,
+.br {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    mix-blend-mode: difference;
+}
+
+.text-cnt h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.text-cnt p {
+    color: white !important;
+}

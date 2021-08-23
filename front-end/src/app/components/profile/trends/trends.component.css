@@ -1,0 +1,101 @@
+.item-card {
+    width: 350px;
+    margin: 0.4em;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    flex-direction: column;
+    border: 2px solid #f0f0f0;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.item-card h5 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.img-desc p::before {
+    content: open-quote;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.img-desc p::after {
+    content: close-quote;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 24px;
+    color: #515151;
+    font-weight: bold;
+}
+
+.price:before {
+    content: '€ ';
+}
+
+.price::after {
+    content: ' EUR';
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.filter {
+    animation: .2s ease-out 0s 1 slideInFromLeft;
+}
+
+.filter-btn {
+    width: 12em;
+    background-color: #323232;
+    color: white;
+    border-radius: 18px;
+    padding: 4px 10px;
+    text-align: center;
+    margin: 5px 1em;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid white;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.all {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.categories-filter {
+    padding: 5px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3.2em;
+}
+
+.categories-filter a {
+    color: #ff004a;
+    text-decoration: underline;
+    font-size: smaller;
+}
+
+.selected {
+    background-color: black !important;
+    transform: translateX(1em);
+}

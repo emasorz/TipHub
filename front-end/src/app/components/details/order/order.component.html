@@ -1,0 +1,58 @@
+<div class="container">
+    <h3>Order #ID</h3>
+    <div class="box">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="lbl-grp">
+                    <label for="">Order id:<span>0033</span></label>
+                    <label for="">Date:<span>20/04/2020</span></label>
+                    <label for="">Buyer:<span>Chris Gund, 
+                        Avenue Street, 101,
+                        New York (NY), USA</span></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="lbl-grp">
+                    <label for="">Payment<span>0033</span></label>
+                    <label for="">Status:
+                        <select name="" id="">
+                            <option value="">Confirmed</option>
+                            <option value="">Not Confirmed</option>
+                            
+                        </select>
+                    </label>
+                    <label for="">Shipping Method:
+                        <span>Standard Shipping (1 week) 10 EUR </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-8 line">
+                <label for="">Items:
+                </label>
+                <table class="rep-itm w-100">
+                    <tr *ngFor="let i of [1,2,3,4,5]">
+                        <td><img src="../../../../assets/jacket.jpg" alt="" width="32"></td>
+                        <td>Jacket</td>
+                        <td>x2</td>
+                        <td>20 EUR</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4 cntr">
+                <label for="">Total (EUR): <span> 45.00</span></label>
+            </div>
+        </div>
+
+    </div>
+    <div class="btn-act">
+        <div class="line">
+            <button>Abort</button>
+            <button>Refund</button>
+        </div>
+
+        <button class="cntc"><i class="fa fa-mail-bulk"></i>contact</button>
+    </div>
+</div>

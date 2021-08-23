@@ -1,0 +1,215 @@
+.smooth-ts {
+    transition: 0.3s ease-out;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas: "Image Image Image Image Title Title Title Title" "Image Image Image Image Summary Summary Summary Summary" "Image Image Image Image Description Description Description Description" "Image Image Image Image Description Description Description Description" "Select-Variants Select-Variants Select-Variants Select-Variants Link-Social Link-Social Link-Social Link-Social";
+}
+
+.Image {
+    grid-area: Image;
+}
+
+.Title {
+    grid-area: Title;
+}
+
+.Summary {
+    grid-area: Summary;
+}
+
+.Description {
+    grid-area: Description;
+}
+
+.Select-Variants {
+    grid-area: Select-Variants;
+}
+
+.Link-Social {
+    grid-area: Link-Social;
+}
+
+.grid-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #d0d0d0;
+    background-color: white;
+    color: black;
+    min-height: 75px;
+    cursor: pointer;
+}
+
+.grid-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2em;
+    margin-top: 0em;
+}
+
+.v-anm {
+    transition: 0.3s ease-out;
+    transition-delay: 0.25s;
+    transform: translateY(-1000px);
+    transform: scaleY(0);
+    height: 0px;
+}
+
+.v-anm-active {
+    transform: translateX(0);
+    opacity: 1;
+    transform: scaleY(1);
+    height: auto !important;
+}
+
+.body {
+    overflow-y: hidden;
+}
+
+.opt-cnt {
+    background-color: white;
+    border-radius: 8px;
+    min-height: 500px;
+    margin-top: 1em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.window-btn {
+    position: absolute;
+    right: 0;
+    top: -0.7em;
+}
+
+.window-btn .x-opt,
+.window-btn .v-opt {
+    padding: 0.5em;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    margin: 0.3em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+.window-btn .x-opt {
+    background-color: #ff004a;
+    content: '<i class="fa fa-window-close"></i>';
+}
+
+.window-btn .v-opt {
+    background-color: #06D6A0;
+}
+
+.s-npt {
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 2px 15px;
+}
+
+.opt-cnt .row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center {
+    justify-content: space-around;
+}
+
+.start {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.start input {
+    margin-right: 2em;
+}
+
+.variant-opt .opt {
+    position: relative;
+    padding: 0em 1.8em;
+    border-radius: 5px;
+    border: 1px solid #515151;
+    color: black;
+    margin-right: 2em;
+    cursor: pointer;
+}
+
+.title {
+    background-color: #d0d0d0 !important;
+}
+
+.dlt-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.add {
+    opacity: 0.5 !important;
+}
+
+.rw {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.act {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.act button {
+    border-radius: 25px;
+    margin: 0.8em;
+    width: 100%;
+    padding: 0.7em 0em;
+}
+
+.act button:first-child {
+    background-color: #06D6A0;
+    color: white;
+    border: none;
+}
+
+.act button:nth-child(2) {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.rel {
+    position: relative;
+}
+
+.nd-btn {
+    position: absolute;
+    bottom: 2em;
+}

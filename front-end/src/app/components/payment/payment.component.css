@@ -1,0 +1,217 @@
+.resume {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #141518;
+    border-radius: 18px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pay-info {
+    background-color: #141518;
+    color: white;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.res-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.3em 0em;
+}
+
+.res-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1em 0em;
+}
+
+.resume button {
+    border: none;
+    background: #a0a0a0;
+    color: white;
+    border-radius: 25px;
+    margin-top: 1em;
+    margin-bottom: 1.2em;
+    font-size: 18px;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.price::before {
+    content: '€ ';
+}
+
+.tot {
+    font-size: 22.5px;
+}
+
+.resume p {
+    font-size: 12px;
+}
+
+.resume a,
+.res-3 a {
+    color: #06D6A0;
+    text-decoration: underline;
+}
+
+.tbl {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0em 0.8em;
+}
+
+.item {
+    background-color: white;
+    color: black;
+    margin: 0.5em;
+    border-radius: 15px;
+    text-align: center;
+}
+
+td {
+    margin-bottom: 1em;
+}
+
+tr td:first-child {
+    border-radius: 25px 0px 0px 25px;
+    padding-left: 0.8em;
+}
+
+tr td:last-child {
+    border-radius: 0px 25px 25px 0px;
+}
+
+td input {
+    width: 50px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.cng-btn {
+    background-color: #06D6A0;
+    border-radius: 15px;
+    color: white;
+    padding: 3px 0px;
+    cursor: pointer;
+}
+
+.start {
+    align-self: flex-start;
+}
+
+h2 {
+    color: white;
+    margin-bottom: 1.3em;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+table {
+    text-align: center;
+}
+
+.clkbl {
+    cursor: pointer;
+}
+
+.modal-body {
+    padding-top: 3em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-bottom: 0.8em;
+    position: relative;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    color: black;
+}
+
+.flex-center label input {
+    padding-right: 5px;
+}
+
+.flex-center label {
+    display: flex;
+    align-items: center;
+}
+
+.flex-center span {
+    position: absolute;
+    top: -1.2em;
+    font-size: 18px;
+}
+
+.input-group {
+    margin: 0.3em;
+}
+
+.input-group-prepend,
+.input-group-prepend span {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: none;
+    background-color: white;
+    color: black;
+}
+
+.input-group-prepend span::after {
+    content: ': ';
+}
+
+.input-group input {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.close {
+    position: absolute;
+    z-index: 1;
+    right: 0.8em;
+    top: -0.8em;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    color: white;
+    background-color: #ff004a;
+    opacity: 1;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-dialog {
+    margin: 6.75rem auto;
+}
+
+.cnfrm-btn {
+    background-color: #06D6A0;
+    color: white;
+    padding: .3em 3em;
+    border: none;
+    border-radius: 18px;
+}

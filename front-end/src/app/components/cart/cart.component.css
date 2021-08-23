@@ -1,0 +1,209 @@
+.resume {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: #141518; */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: black;
+}
+
+.res-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.3em 0em;
+}
+
+.resume button {
+    border: none;
+    background: #ff004a;
+    color: white;
+    border-radius: 25px;
+    margin-top: 3em;
+    margin-bottom: 1.2em;
+    font-size: 18px;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.last td {
+    padding: 10px 0px;
+}
+
+.price::before {
+    content: '€ ';
+}
+
+.tot {
+    font-size: 22.5px;
+    border-top: 1px solid #212121;
+}
+
+.tbl-cntr {
+    display: flex;
+    flex-direction: column;
+}
+
+.tbl {
+    background-color: #141518fd;
+    border-radius: 15px;
+    border: 1px solid white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0em 0.8em;
+    margin-bottom: 4em;
+    padding-top: 2em !important;
+}
+
+.item {
+    background-color: white;
+    color: black;
+    margin: 0.5em;
+    border-radius: 15px;
+}
+
+td {
+    margin-bottom: 1em;
+}
+
+tr td:first-child {
+    border-radius: 25px 0px 0px 25px;
+    padding-left: 0.8em;
+}
+
+tr td:last-child {
+    border-radius: 0px 25px 25px 0px;
+}
+
+td input {
+    width: 50px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.cng-btn {
+    background-color: #06D6A0;
+    border-radius: 15px;
+    color: white;
+    padding: 3px 0px;
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.end {
+    align-self: flex-end;
+}
+
+.resume a {
+    color: #ff004a;
+}
+
+.lst-tm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lst-tm input {
+    margin: 1em;
+}
+
+.prf-cntr .prf-img {
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    top: -2.8em;
+}
+
+.prf-cntr {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.checkbox {
+    position: relative;
+    transform: translateY(-2em);
+}
+
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 35px;
+    background-color: #eee;
+    border-radius: 5px;
+    border: 1px solid #141518;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.checkbox:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.checkbox input:checked~.checkmark {
+    background-color: white;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.checkbox .checkmark:after {
+    left: 10px;
+    top: 4px;
+    width: 15px;
+    height: 20px;
+    border: solid #06D6A0;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

@@ -1,0 +1,25 @@
+<div class="blob-background full-height">
+    <div class="row justify-center">
+        <form class="col-md-4 justify-center column form-container" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <h4>Log In</h4>
+            <input type="text" placeholder="E-mail" id="emial" required [(ngModel)]="email" name="email" #mail="ngModel">
+            <input type="password" placeholder="Password" id="password" required [(ngModel)]="password" name="password" #pswrd="ngModel">
+            <div class="justify-around">
+                <span><input type="checkbox">Remember me</span>
+                <a>Forgot Password?</a>
+            </div>
+            <button type="submit" class="primary-btn" style="position: relative; min-height: 36px;">
+                <ngx-spinner *ngIf="isLoading else text" bdColor = "rgba(255,255 ,255 , 0)" size = "small" color = "#fff" type = "ball-spin" [fullScreen] = "false"></ngx-spinner>
+                <ng-template #text><span>Go!</span></ng-template>
+            </button>
+
+            <label class="line-label"><span>or</span></label> {{email}} {{password}}
+            <div>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-apple"></a>
+                <a href="#" class="fa fa-google"></a>
+            </div>
+            <span>New to Tiphub?<a routerLink="/register"> Sign up</a>, now!</span>
+        </form>
+    </div>
+</div>

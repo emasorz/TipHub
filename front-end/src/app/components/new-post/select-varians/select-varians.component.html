@@ -1,0 +1,54 @@
+<ngx-spinner bdColor="rgba(0,0 ,0 , 0)" size="medium" color="#000" type="ball-clip-rotate" [fullScreen]="false"></ngx-spinner>
+<div class="select-grp p-2">
+    <label for="">Selected:</label>
+
+    <ul class="opts p-2">
+        <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">{{option.getTitle()}}</li>
+        <li class="opt" routerLink="/new-post/select-variants/options">Aggiungi opzioni</li>
+    </ul>
+
+</div>
+
+<div class="select-grp p-2">
+    <label for="" class="mt-2">Possible options:</label>
+    <select (change)="newProduct.thingsCategory[i] = $event.target.value" *ngFor="let select of selected; let i = index" name="{{select.getTitle()}}" id="size">
+        <option value="" selected disabled hidden>{{select.getTitle()}}</option>
+        <option *ngFor="let option of select.options" value="{{option}}">{{option}}</option>
+    </select>
+    <div class="inpt">
+        <label for="">Quantity</label>
+        <input #quantity (keyup)="newProduct.quantity = quantity.value" type="number" class="qnty">
+    </div>
+
+    <div class="inpt">
+        <label for="">Price</label>
+        <input #price (keyup)="newProduct.price = price.value" type="number" class="prc">
+    </div>
+
+    <div class="cmr-btn" [routerLink]="['/new-post/select-variants/images']"><i class="fa fa-camera"></i></div>
+    <button class="btn btn-light border" (click)="createNewProduct()"><i class="fa fa-check"></i></button>
+</div>
+
+
+<div class="sum-opts">
+    <ul>
+        <li *ngFor="let product of products">
+            <div class="cls-btn"><i class="fa fa-times"></i></div>
+
+            <div class="line-grp">
+                <div class="d-flex flex-row align-items-center" *ngFor="let category of product.thingsCategory; let last = last">
+                    <div class="opt">{{category}}</div>
+                    <i *ngIf="!last" class="fa fa-plus"></i>
+                </div>
+            </div>
+
+            <div class="line-grp">
+                <div class="opt-q price">{{product.price}}</div>
+                <i class="fa fa-times"></i>
+                <div class="opt-q">{{product.quantity}}</div>
+            </div>
+
+            <img [src]="product.img" alt="" width="32">
+        </li>
+    </ul>
+</div>

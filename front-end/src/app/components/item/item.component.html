@@ -1,0 +1,114 @@
+<div class="container-lg fx-bt">
+    <div class="media align-items-end profile-header">
+        <div class="profile"><img src="https://i.pravatar.cc/150?img=12" alt="..." width="130"></div>
+        <div class="media-body mb-5 text-white">
+            <div class="prf-lbl pl-3 pt-1">
+                <h4 class="mt-0 mb-0">Manuella Tarly</h4>
+                <p class="small p-0"> <i class="fa fa-at mr-2"></i>{{id}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row itm-cnt">
+        <div class="col-md-4 item-imgs">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item"><img src="../../../assets/jacket.jpg" alt="The Last of us" loading="lazy"></div>
+                <div class="item"><img src="../../../assets/jacket.jpg" alt="GTA V" loading="lazy"></div>
+                <div class="item"><img src="../../../assets/jacket.jpg" alt="Mirror Edge" loading="lazy"></div>
+                <div class="item"><img src="../../../assets/jacket.jpg" alt="Mirror Edge" loading="lazy"></div>
+            </div>
+
+            <div class="type" *ngFor="let type of [1,2];">
+                <h4>Selezione</h4>
+                <div class="options">
+                    <div class="option selected">M</div>
+                    <div class="option">S</div>
+                    <div class="option">L</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8 center">
+            <a routerLink="/profile/{{id}}" class="close"></a>
+            <h1 class="text-uppercase mt-5">{{product}}</h1>
+            <h4> PRICE (selected): <span class="price">12</span></h4>
+
+            <div class="desc mt-3 mb-2">
+                <p>
+                    <i class="fa fa-quote-left"></i> Very hot, a true revelation on this kind of hoodies
+                    <i class="fa fa-quote-right"></i>
+                </p>
+            </div>
+
+            <div class="social container w-50 mb-4">
+                <h4>Watch it on</h4>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+
+                            <div class="iframe-container">
+                                <iframe src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+
+                            <div class="iframe-container">
+                                <iframe src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+
+                            <div class="iframe-container">
+                                <iframe src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="summary">
+                <h3>Summary:</h3>
+                <div class="sel">
+                    <label for="">SELEZIONE: </label>
+                    <label> M</label>
+                </div>
+                <div class="sel">
+                    <label for="">SELEZIONE: </label>
+                    <label> M</label>
+                </div>
+            </div>
+
+            <div class="sel-price">
+                <label for="">Price: </label>
+                <label class="price">12</label>
+            </div>
+
+            <a href="" class="cart-btn">Add to cart</a>
+        </div>
+
+        <div class="review-cnt">
+            <h3 class="text-center">REVIEWS</h3>
+            <div class="rating display-4 text-center mb-4"></div>
+
+            <ul class="container crd-cnt pr-4 pl-4">
+                <li class="card-review" *ngFor="let i of [1,2,3,4,5]">
+                    <div class="crd-str">
+                        <img src="../../../assets/profile.png" width="64" height="64" alt="">
+                        <div class="dtl">
+                            <h6 class="m-0 p-0">Nome Cognome</h6>
+                            <div class="rating display-6"><span class="date">Feb 23, 2021</span></div>
+
+                            <p class="cmnt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure, eveniet! Possimus culpa, doloremque deserunt ab itaque autem eius!</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

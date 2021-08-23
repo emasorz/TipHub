@@ -1,0 +1,8 @@
+<div class="progress-container">
+    <div class="progress" id="progress"></div>
+    <div class="circle" [ngClass]="{'step-active': first}" *ngFor="let i of counter(numberOfSteps); let index = index; let first = first">
+        <i class="fa" [ngClass]="[icons[index]]"></i>
+    </div>
+</div>
+<!-- <button class="btn" id="prev" (click)="prev()">Prev</button>
+<button class="btn" id="next" (click)="next()">Next</button> -->

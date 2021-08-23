@@ -1,0 +1,56 @@
+.act-grp {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+    justify-content: start;
+}
+
+.act-grp button {
+    border: 1px solid black;
+    color: #000000;
+    padding: 0.2em 2em;
+    margin: 2em 0.6em;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.act-grp button:last-child {
+    background-color: #06D6A0;
+    color: white;
+    border: none;
+}
+
+.opt-grp {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.opt-grp li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.opt-grp * {
+    margin: 0.2em 1.6em;
+}
+
+.cls {
+    background-color: black;
+    padding: 0.1em;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    font-size: 13px;
+}
+
+.opt-grp label {
+    font-weight: bold;
+}

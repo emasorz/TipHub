@@ -1,0 +1,13 @@
+footer {
+    width: 100%;
+    background-color: #141518;
+}
+
+.text-muted {
+    color: white !important;
+}
+
+footer h5,
+footer span {
+    color: #ffffff;
+}

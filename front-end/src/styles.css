@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100% !important;
+    background-image: url(../src/assets/svg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+/* .bg-prm {
+    background-color: #141518;
+} */
+
+ul {
+    list-style-type: none;
+}

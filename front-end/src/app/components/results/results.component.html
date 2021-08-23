@@ -1,0 +1,30 @@
+<div class="container-lg">
+    <div class="row p-0 m-0">
+        <div class="col-md-2 text-white">
+            <label for="fileter by:">Filter by:</label>
+            <ul>
+                <li>All socials</li>
+                <li>Tiphub</li>
+            </ul>
+            <label for="Order by:">Order by:</label>
+            <ul>
+                <li>Top</li>
+                <li>New</li>
+                <li>A-Z</li>
+                <li>Z-A</li>
+            </ul>
+        </div>
+        <div class="col-md-10 text-center">
+            <h1 class="text-white">All</h1>
+            <div style="display: flex; justify-content: center;">
+                <div class="res-grid">
+                    <div class="prf-card" *ngFor="let result of [1,2,3,4,5,6,7,8,9]">
+                        <img src="https://i.pravatar.cc/150?img={{result + math.floor(math.random()*50)}}" alt="">
+                        <h6 class="text-white">Name Surname<sup class="k">{{ math.floor(math.random()*999)}}</sup></h6>
+                        <div class="flw-btn">Follow</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

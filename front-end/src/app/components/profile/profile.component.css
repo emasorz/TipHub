@@ -1,0 +1,263 @@
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile img {
+    border-radius: 50%;
+    margin: .3em;
+}
+
+.bg-cover {
+    background-image: url('../../../assets/cover.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.bg-cover img {
+    border: none;
+    border-radius: 50%;
+}
+
+.prf-lbl {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.social-icon {
+    font-size: 18px;
+    font-weight: bold;
+    color: #06D6A0;
+}
+
+.list-inline-item h5 {
+    color: #06D6A0;
+}
+
+.merch-grid {
+    width: 100%;
+}
+
+.item-card {
+    width: 350px;
+    margin: 0.4em;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    flex-direction: column;
+    border: 2px solid #f0f0f0;
+}
+
+.filter-btn {
+    width: 12em;
+    background-color: transparent;
+    color: white;
+    border-radius: 18px;
+    padding: 4px 10px;
+    text-align: center;
+    margin: 5px 1em;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid white;
+    font-weight: bold;
+}
+
+.all {
+    color: black;
+    background-color: white;
+}
+
+.categories-filter {
+    padding: 5px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3.2em;
+}
+
+.categories-filter a {
+    color: #ff004a;
+    text-decoration: underline;
+    font-size: smaller;
+}
+
+.selected {
+    background-color: black !important;
+    transform: translateX(1em);
+}
+
+.img-desc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.img-desc p {
+    font-size: 12px;
+}
+
+.item-card h5 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.img-desc p::before {
+    content: open-quote;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.img-desc p::after {
+    content: close-quote;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 24px;
+    color: #515151;
+    font-weight: bold;
+}
+
+.price:before {
+    content: '€ ';
+}
+
+.price::after {
+    content: ' EUR';
+}
+
+.tab-pane.active {
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pnl-act {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.pnl-act li {
+    margin: 1em 2em;
+}
+
+.tab-pane {
+    padding: 15px;
+    color: white;
+}
+
+.nav-tabs {
+    position: relative;
+    border: none!important;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-tabs li {
+    margin-left: 0px;
+    padding-bottom: 0.3em;
+}
+
+.nav-tabs li a {
+    position: relative;
+    margin-right: 0px!important;
+    font-size: 22px;
+    border: none!important;
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+}
+
+.slider {
+    display: inline-block;
+    width: 20px;
+    height: 4px;
+    border-radius: 3px;
+    background-color: #06D6A0;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.1s ease-out;
+}
+
+.nav-tabs .active {
+    background-color: transparent!important;
+    border: none!important;
+    color: #06D6A0!important;
+}
+
+.yt-dtls {
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.yt-dtls span {
+    margin: 0.5em;
+}
+
+.yt-dtls i {
+    margin-right: 5px;
+}
+
+.thumbs {
+    align-self: flex-start;
+}
+
+.visual {
+    align-self: flex-end;
+}
+
+.insta {
+    border: 2px solid yellow;
+}
+
+.insta * {
+    color: white;
+    background-color: #141518;
+}
+
+.Footer {
+    display: none;
+}
+
+.fb {
+    padding: 5px;
+    border: 2px solid #3b5998;
+}
+
+.yt {
+    border: 2px solid #FF0000;
+}
+
+.twttr {
+    border: 2px solid azure;
+}
+
+.twtch {
+    border: 1px solid #6441a5;
+}

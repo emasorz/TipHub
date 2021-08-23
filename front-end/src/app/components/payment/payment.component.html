@@ -1,0 +1,138 @@
+<div class="container text-center">
+    <h2>Payment (2 items)</h2>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="container pt-3 text-left pay-info">
+                <div class="res-3">
+                    <label for="">Shipping Information:</label>
+                    <span><!-- Large modal -->
+                        <a class="text-white clkbl" data-toggle="modal" data-target=".bd-example-modal-lg">Insert Address</a>
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <form action="">
+                        <div class="flex-row">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Surname</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+
+                        <div class="flex-row">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Country</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">City</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Zip Code</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Street</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+
+                        <div class="flex-center mt-5">
+                            <span>Billing address:</span>
+                            <label for=""><input type="checkbox"> Same as shipping address</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cnfrm-btn" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </span>
+    <a href="">change</a>
+</div>
+<div class="res-3">
+    <label for="">Shipping Method:</label>
+    <span>Standard Shipping (1 week)</span>
+    <a href="">change</a>
+</div>
+<div class="res-3">
+    <label for="">Payment:</label>
+    <span><i class="fa fa-cc-mastercard"></i> Mastercard ending with 5234</span>
+    <a href="">change</a>
+</div>
+
+<hr>
+
+<table class="tbl">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <h4>Items:</h4>
+            </th>
+            <th>Product</th>
+            <th>Price [€]</th>
+            <th>Q.ty</th>
+            <th colspan="1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let price of [1,2]" class="item">
+            <td class="pointer">x</td>
+            <td><img src="../../../assets/jacket.jpg" width="48"></td>
+            <td>JACKET</td>
+            <td>32</td>
+            <td><input min="1" max="10" type="number" value="1"></td>
+            <td class="pl-1 pr-3">
+                <div class="cng-btn">change</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div class="col-md-5">
+    <div class="container resume">
+        <button class="pt-1 pb-2 b" routerLink="/payment" disabled>Confirm Order</button>
+        <p>By confirming your order you fully accept our <a>General Conditions of Use and Sale</a>. The purchase will be completed only with the shipping confirmation. Read our <a>Privacy Policy</a>, our <a>Cookie Policy</a> and our Interest-Based
+            <a> Advertising Policy</a>.
+        </p>
+        <h5>Order Summary:</h5>
+        <div class="res-2">
+            <label for="items">Items (2)</label>
+            <span class="price">39</span>
+        </div>
+        <div class="res-2">
+            <label for="items">Shipping</label>
+            <span class="price">10</span>
+        </div>
+        <hr>
+        <div class="res-2 b tot pt-1 mt-1">
+            <label for="items">Total</label>
+            <span class="price">50</span>
+        </div>
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container text-white text-center">
+    <div class="row">
+        <div class="smooth-ts p-0" [ngClass]="isExpanded ? 'col-md-4' : 'col-md-12'">
+            <div class="container rw mt-3">
+                <div class="grid-container w-100">
+                    <div class="Image" (click)="expand()" [routerLink]="['/new-post/select-variants/images']">
+                        <ngx-dropzone (change)="onSelect($event)" style="width: 100%; height:100%">
+                            <ngx-dropzone-label>Drop an image!</ngx-dropzone-label>
+                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                    </div>
+                    <div class="Title"><input type="text" name="title" id="title" placeholder="title"></div>
+                    <div class="Summary"><input type="text" name="summary" id="summary" placeholder="summary"></div>
+                    <div class="Description"><textarea name="desc" id="desc" cols="40" rows="5" style="resize: none;" placeholder="Description"></textarea></div>
+                    <div (click)="expand()" class="Select-Variants" [routerLink]="['/new-post/select-variants']"><a>Select variants</a></div>
+                    <div class="Link-Social" (click)="expand()" [routerLink]="['/new-post/select-variants/socials']">Link Social</div>
+
+                </div>
+                <div class="act rel">
+                    <button>Publish</button>
+                    <button>Save as draft</button>
+                    <div class="nd-btn">
+                        <button class="m-0" [routerLink]="['/new-post/drafts']">new draft</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="v-anm p-0" [ngClass]="isExpanded ? 'col-md-8 v-anm-active' : ''">
+            <div class="container">
+                <div class="opt-cnt text-black">
+                    <div class="window-btn">
+                        <a class="x-opt" (click)="expand()" [routerLink]="['/new-post']"><i class="fa fa-window-close"></i></a>
+                        <a class="v-opt"><i class="fa fa-check"></i></a>
+                    </div>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- 
+           
+ -->

@@ -1,0 +1,57 @@
+.my-custom-scrollbar {
+    position: relative;
+    height: 19em;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.table {
+    background-color: white;
+    border: 5px;
+}
+
+.table * {
+    border: none;
+    padding: 0.2em;
+}
+
+.around {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.around input {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    border: none;
+    padding: 0px 2em;
+}
+
+.around button {
+    color: white;
+    background-color: black;
+    border-radius: 15px;
+    padding: 0px 2em;
+    border: none;
+}
+
+.expand {
+    color: white;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+}
+
+.box {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.4em;
+}

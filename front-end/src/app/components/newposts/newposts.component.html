@@ -1,0 +1,70 @@
+<div class="modal-header d-flex flex-column">
+    <div class="d-flex flex-row justify-content-between w-100 align-items-center">
+        <h5 class=" modal-title " id="exampleModalLongTitle ">Crea Nuovo Post</h5>
+        <button type="button" class="close" style="border-radius: 50%;" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true ">&times;</span>
+        </button>
+    </div>
+    <app-stepper class="w-100" [currentActive]="1" [numberOfSteps]="5" [icons]="['fa-image', 'fa-edit', 'fa-tags', 'fa-list-ul','fa-check']"></app-stepper>
+</div>
+<div class="modal-body ">
+    <div *ngIf="currentStep==1 " class="step-1 ">
+        <ngx-dropzone (change)="onSelect($event, postMultimedias) " style="width: 100%; min-height:200px ">
+            <ngx-dropzone-label>Drop an image!</ngx-dropzone-label>
+            <!-- <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview " *ngFor="let f of files " [file]="f " [removable]="true " (removed)="onRemove(f) ">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview> -->
+        </ngx-dropzone>
+
+        <h6 *ngIf="postMultimedias.length> 1">Seleziona il prodotto principale</h6>
+        <ul class="w-100 m-0 p-0 d-flex flex-row ml-2 mr-2" style="list-style: none;">
+            <li class="m-1 p-1 rounded pointers" (click)="selectedImg = i" [ngStyle]="{'border':selectedImg === i ? '3px solid #06D6A0':'1px solid #dee2e6'}" *ngFor="let image of postMultimedias; let i = index"><img [src]="image" alt="" width="100" height="100"></li>
+        </ul>
+    </div>
+
+    <div *ngIf="currentStep == 2" class="step-2">
+        <div class="container">
+            <div class="d-flex flex-row align-items-end pb-3 mb-1">
+                <img class="border rounded p-1" [src]="postMultimedias[selectedImg]" alt="" width="100" height="100">
+                <input class="w-100 ml-3 pl-4" type="text" placeholder="Inserisci Titolo">
+            </div>
+            <div class="d-flex flex-row-align-itesm-end">
+                <textarea placeholder="Inserisci descrizione" rows="1" name="" id="" class="w-100"></textarea>
+            </div>
+            <div class="pt-4 pb-4">
+                <button class="btn border rounded">inserisci tag</button>
+            </div>
+
+            <div class="share">
+                Inserisci link ai tuoi post socials
+                <div class="input-group mb-3 w-100">
+                    <input type="text" placeholder="Url.." aria-label="Url.." aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"><i class="fa fa-send"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="currentStep == 3" class="step-3">
+        <h4 class="pl-3">Scegli le categorie</h4>
+        <ul class="m-0 p-0 d-flex flex-row justify-content-start flex-wrap" style="list-style: none;">
+            <li class="border category" *ngFor="let i of [1,1,1,2,2,2,4,3,4,4,5,6]; let index = index">categoria{{index}}</li>
+        </ul>
+    </div>
+
+    <div *ngIf="currentStep == 4" class="step-4" class="pt-3 pb-3 pl-2 pr-2">
+        <app-select-varians [images]="postMultimedias"></app-select-varians>
+    </div>
+
+    <div *ngIf="currentStep == 5" class="step-5">
+        <h1>Composizione post e Pubblicazione</h1>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- data-dismiss="modal" -->
+    <button type="button" class="btn btn-secondary" (click)="prev()">Prev</button>
+    <button type="button" class="btn btn-primary" (click)="next()">Next</button>
+</div>

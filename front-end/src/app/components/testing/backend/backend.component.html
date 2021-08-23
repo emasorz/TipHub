@@ -1,0 +1,29 @@
+<div class="container" style="background-color: white; padding: 2.5em; border-radius: 18px; margin: 3em auto; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+    <h1>Users ({{users.length}})</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Icon</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Email Verification</th>
+                <th scope="col">Remember Me</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{user._id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.Icon || "None"}}</td>
+                <td>{{user.telephone || "None"}}</td>
+                <td>{{user.emailVerified || "None"}}</td>
+                <td>{{user.rememberMe || "None"}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,69 @@
+<div class="container text-white text-center pt-2">
+    <h2 class="mt-1">Cart ({{prices.length}} Items)</h2>
+    <div class="row text-center mt-5">
+        <div class="col-md-8 tbl-cntr p-10">
+            <div class="lst-tm" *ngFor="let i of [1,2]">
+                <table class="tbl p-3">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h2 class="prf-cntr">
+                                    Bob Travis <img class="prf-img" src="../../../assets/profile.png" width="84" alt="">
+                                </h2>
+                            </th>
+                            <th>Product</th>
+                            <th>Price [€]</th>
+                            <th>Q.ty</th>
+                            <th colspan="1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let price of prices" class="item">
+                            <td class="pointer" (click)="remove(price)">x</td>
+                            <td><img src="../../../assets/jacket.jpg" width="48"></td>
+                            <td>JACKET</td>
+                            <td>{{price}}</td>
+                            <td><input min="1" max="10" type="number" value="1"></td>
+                            <td class="pl-1 pr-3">
+                                <div class="cng-btn">change</div>
+                            </td>
+                        </tr>
+
+
+                        <tr class="item last">
+                            <td colspan="3">Standard Shipping (2 week)</td>
+                            <td>10</td>
+                            <td></td>
+                            <td class="pl-1 pr-3">
+                                <div class="cng-btn">change</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <label class="checkbox m-2">One
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                  </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="container resume pl-4 pr-4">
+                <button class="pb-2 b" [routerLink]="['/payment']">Procede to payment</button>
+                <div class="res-2">
+                    <label for="items">Items ( {{prices.length}} )</label>
+                    <span class="price">{{total()}}</span>
+                </div>
+                <div class="res-2">
+                    <label for="items">Shipping</label>
+                    <span class="price">10</span>
+                </div>
+                <div class="res-2 b tot pt-1 mt-1">
+                    <label for="items">Total</label>
+                    <span class="price">{{total()+10}}</span>
+                </div>
+                <a href="" class="end text-small p-3"><u>Change currency</u></a>
+            </div>
+
+        </div>
+    </div>
+</div>

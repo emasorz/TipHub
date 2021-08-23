@@ -1,0 +1,73 @@
+<div class="blob-background full-height">
+    <div class="row justify-center">
+        <form class="col-md-4 justify-center column form-container" (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" [mustMatch]="['email', 'confirmEmail']" novalidate>
+            <h4>Sign Up</h4>
+
+            <div *ngIf="successful" class="alert alert-success">
+                Registrazione effetuata con successo, controlla la email per l'email di conferma (todo).
+            </div>
+            <input type="text" placeholder="Username" id="name" required [(ngModel)]="model.username" name="username" #username="ngModel" minlength="1" [ngClass]="{ 'is-invalid': registerForm.submitted && username.invalid }">
+            <div *ngIf="registerForm.submitted && username.invalid" class="invalid-feedback">
+                <div *ngIf="username.errors.required">Username is required</div>
+            </div>
+
+            <input type="password" placeholder="Password" id="password" required [(ngModel)]="model.password" name="password" minlength="6" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" #password="ngModel" [ngClass]="{ 'is-invalid': registerForm.submitted && password.invalid }">
+            <div *ngIf="registerForm.submitted && password.invalid" class="invalid-feedback">
+                <div *ngIf="password.errors.pattern">Password must contains: at least one uppercase letter, at least one lowercase letter, at least one number, at least one special character.</div>
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+
+            <input type="email" placeholder="e-mail" id="email" required [(ngModel)]="model.email" email="true" name="email" #email="ngModel" [ngClass]="{ 'is-invalid': registerForm.submitted && email.invalid }">
+            <div *ngIf="registerForm.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            </div>
+
+            <input type="email" placeholder="Confirm e-mail" id="confirm-email" [(ngModel)]="email1" required #confirmEmail="ngModel" name="confirmEmail" email [ngClass]="{ 'is-invalid': registerForm.submitted && confirmEmail.invalid }">
+            <div *ngIf="registerForm.submitted && confirmEmail.invalid" class="invalid-feedback">
+                <div *ngIf="confirmEmail.errors.required">Confirm Email is required</div>
+                <div *ngIf="confirmEmail.errors.mustMatch || (confirmEmail.invalid && confirmEmail.value != '')">Email must match</div>
+            </div>
+            <button type="submit" class="primary-btn" style="position: relative; min-height: 36px;">
+                <ngx-spinner *ngIf="isLoading else text" bdColor = "rgba(255,255 ,255 , 0)" size = "small" color = "#fff" type = "ball-spin" [fullScreen] = "false"></ngx-spinner>
+                <ng-template #text><span>Register</span></ng-template>
+            </button> {{registerForm.valid}}
+            <span class="min-text"> By signing up, you agree to Patreon's <a data-toggle="modal"data-target="#exampleModalLong">Terms of Use</a>, <a>Privacy Policy</a>  and <a>Cookie Policy.</a> </span>
+
+            <label class="line-label"><span>or</span></label>
+
+            <div class="socials-signin">
+                <button type="button" (click)="loginWithGoogle()" class="btn social-btn"><span class="fa fa-google"></span></button>
+                <button type="button" (click)="loginWithFacebook()" class="btn social-btn"><span class="fa fa-facebook"></span></button>
+                <button type="button" (click)="loginWithAmazon()" class="btn social-btn"><span class="fa fa-amazon"></span></button>
+            </div>
+
+            <span>Already have an account?<a routerLink="/login"> Log in</a>, now!</span>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Term of use</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda
+                porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum
+                exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore
+                fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+.full-height {
+    height: 91.5% !important;
+}
+
+
+/* .blob-background {
+    background: #141518 url("data:image/svg+xml,%3Csvg width='1280' height='710' xmlns='http://www.w3.org/2000/svg'%3E %3Cg fill='%23FF004A' fill-rule='evenodd'%3E %3Cpath d='M0 63.354c47.677-2.931 102.14 12.343 163.387 45.822 91.87 50.22 126.954 158.927 248.81 226.016 121.856 67.09 217.644 28.645 324.582 86.582C843.72 479.71 882.997 594 979.392 646.458c64.263 34.971 130.87 56.185 199.821 63.641H0V63.354z'/%3E %3Cpath d='M0 1.393C50.612-3.2 109.835 13.082 177.667 50.234c101.749 55.73 130.439 163.5 265.397 237.95 134.958 74.45 204.648 26.67 323.085 90.963 118.436 64.293 142.832 176.85 249.59 235.062 71.173 38.808 167.927 70.771 290.261 95.89H0V1.393z' opacity='.7'/%3E %3C/g%3E %3C/svg%3E") left bottom/100% no-repeat fixed;
+} */
+
+.justify-center {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    flex-direction: column;
+    padding: 2.7em;
+}
+
+.line-label {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #a0a0a0;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+.line-label span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
+    margin-top: 1%;
+}
+
+.form-container input {
+    border-radius: 25px;
+    margin: 0.5em 0em;
+    padding: 0.35em 1.4em;
+    border: 1px solid #f0f0f0;
+}
+
+.justify-around {
+    display: flex;
+    justify-content: space-around;
+    width: 100% !important;
+}
+
+.primary-btn {
+    margin: 0.4em 4em;
+    padding: 0.35em;
+    border-radius: 25px;
+    color: white;
+    background-color: #06D6A0;
+    border: none;
+    font-weight: bold;
+}
+
+
+/* Style all font awesome icons */
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: #141518 !important;
+}
+
+
+/* Add a hover effect if you want */
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+a {
+    color: #FF004A !important;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.min-text {
+    font-size: 12px;
+}
+
+input.is-invalid {
+    border: 1px solid pink !important;
+}
+
+input.is-valid {
+    border: 1px solid lightgreen !important;
+}
+
+.invalid-feedback {
+    width: 100%;
+    text-align: start;
+    padding-left: 1.6em;
+}
+
+.socials-signin {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 0em 2em;
+}
+
+.socials-signin span {
+    padding: 0px;
+    color: white;
+    width: 30px;
+}
+
+
+/* .fa-facebook {
+    color: blue !important;
+}
+
+.fa-google {
+    color: red !important;
+} */

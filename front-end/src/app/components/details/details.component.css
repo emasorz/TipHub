@@ -1,0 +1,141 @@
+.v-anm {
+    transition: 0.3s ease-out;
+    transition-delay: 0.25s;
+    transform: translateY(-1000px);
+    transform: scaleY(0);
+}
+
+.v-anm-active {
+    transform: translateX(0);
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.window-btn {
+    position: absolute;
+    right: 0;
+    top: -0.7em;
+}
+
+.window-btn .x-opt,
+.window-btn .v-opt {
+    padding: 0.5em;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    margin: 0.3em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+.window-btn .x-opt {
+    background-color: #ff004a;
+    content: '<i class="fa fa-window-close"></i>';
+}
+
+.window-btn .v-opt {
+    background-color: #06D6A0;
+}
+
+.opt-cnt {
+    background-color: #141518;
+    border-radius: 8px;
+    min-height: 20em;
+    margin-top: 2em;
+    padding: 15px 0.3em;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+}
+
+.s-npt {
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 2px 15px;
+}
+
+.opt-cnt .row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center {
+    justify-content: space-around;
+}
+
+.start {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.smooth-ts {
+    transition: 0.3s ease-out;
+}
+
+nav {
+    width: 100%;
+}
+
+.navigation,
+.actions,
+.navigation ul,
+.line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.line {
+    justify-content: space-between;
+}
+
+.navigation img {
+    border-radius: 50%;
+}
+
+.nav-list li {
+    font-size: 1.5em;
+}
+
+.actions a {
+    margin: 0.6em;
+    color: white;
+    padding: 0.2em 1.7em;
+    border-radius: 25px;
+    border: 1px solid white;
+}
+
+.box {
+    border: 1px solid white;
+    border-radius: 5px;
+    height: 15em;
+    margin: 1.5em;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.table {
+    background-color: white;
+    border: 5px;
+}
+
+.table * {
+    border: none;
+    padding: 0.2em;
+}
+
+.col {
+    display: flex !important;
+    flex-direction: column !important;
+}
