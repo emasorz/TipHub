@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 
  import { NgxSpinnerModule } from "ngx-spinner";
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -48,6 +49,7 @@ import { FlexsComponent } from './components/profile/flexs/flexs.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NewpostsComponent } from './components/newposts/newposts.component';
 import { StepperComponent } from './components/tools/stepper/stepper.component';
+import { MailVerificationComponent } from './components/mail-verification/mail-verification.component';
 
 
 @NgModule({
@@ -81,7 +83,8 @@ import { StepperComponent } from './components/tools/stepper/stepper.component';
     TrendsComponent,
     FlexsComponent,
     NewpostsComponent,
-    StepperComponent
+    StepperComponent,
+    MailVerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,7 @@ import { StepperComponent } from './components/tools/stepper/stepper.component';
     FormsModule,
     NgxSpinnerModule,
     SocialLoginModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: WebReqInterceptor, multi: true },

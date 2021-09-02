@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations'
 import { WebRequestService } from 'src/app/services/web-request.service';
 
 import { Option } from 'src/app/models/option.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StepperComponent } from '../tools/stepper/stepper.component';
+
+
+import {initPackery} from '../../../assets/js/packery';
 
 @Component({
   selector: 'app-newposts',
@@ -23,8 +26,14 @@ import { StepperComponent } from '../tools/stepper/stepper.component';
   ]
 })
 export class NewpostsComponent implements OnInit {
-
   @ViewChild(StepperComponent) stepper: StepperComponent;
+
+  @ViewChild('mydiv') set div(div: ElementRef) {
+    if (div) { // initially setter gets called with undefined
+      console.log(div);
+      initPackery();
+    }
+  }
 
   files: File[] = [];
   postMultimedias: any = [];
@@ -36,7 +45,10 @@ export class NewpostsComponent implements OnInit {
   selected = [];
 
 
+
+
   constructor(private webService: WebRequestService, private spinner: NgxSpinnerService) {
+
     let userId = '60efccf23f045226ac85337b';
     this.options = [];
     this.webService.get(`users/${userId}/variantsoptions`).subscribe((res: any) => {
@@ -47,9 +59,22 @@ export class NewpostsComponent implements OnInit {
         }
       }
     })
+
+
   }
 
+
   ngOnInit(): void {
+
+
+  }
+
+
+
+  
+
+  ngAfterViewInit(): void {
+  
   }
 
 
@@ -83,7 +108,7 @@ export class NewpostsComponent implements OnInit {
   }
 
   prev() {
-    this.currentStep--; 
+    this.currentStep--;
     this.stepper.prev();
   }
 
@@ -96,4 +121,6 @@ export class NewpostsComponent implements OnInit {
       this.selected.push(option);
     }
   }
+
+  /** Draggable */
 }

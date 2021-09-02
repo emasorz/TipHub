@@ -25,10 +25,12 @@ import { BackendComponent } from './components/testing/backend/backend.component
 import { PostsComponent } from './components/profile/posts/posts.component';
 import { FlexsComponent } from './components/profile/flexs/flexs.component';
 import { TrendsComponent } from './components/profile/trends/trends.component';
+import { MailVerificationComponent } from './components/mail-verification/mail-verification.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data:{animation: 'LoginPage'} },
   { path: 'register', component:  RegisterComponent, data:{animation: 'RegisterPage'}},
+  { path: 'account/mailVerification', component: MailVerificationComponent},
   { path: 'profile/:id/product/:product', component:  ItemComponent, data:{animation: 'ItemPage'}},
   { path: 'profile/:id',      component:  ProfileComponent, data:{animation: 'ProfilePage'}, children:[
     {path: '', redirectTo:'posts', pathMatch: 'full'},

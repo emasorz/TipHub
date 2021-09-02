@@ -8,12 +8,10 @@
     <app-stepper class="w-100" [currentActive]="1" [numberOfSteps]="5" [icons]="['fa-image', 'fa-edit', 'fa-tags', 'fa-list-ul','fa-check']"></app-stepper>
 </div>
 <div class="modal-body ">
+    <!-- first step -->
     <div *ngIf="currentStep==1 " class="step-1 ">
         <ngx-dropzone (change)="onSelect($event, postMultimedias) " style="width: 100%; min-height:200px ">
             <ngx-dropzone-label>Drop an image!</ngx-dropzone-label>
-            <!-- <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview " *ngFor="let f of files " [file]="f " [removable]="true " (removed)="onRemove(f) ">
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                </ngx-dropzone-image-preview> -->
         </ngx-dropzone>
 
         <h6 *ngIf="postMultimedias.length> 1">Seleziona il prodotto principale</h6>
@@ -22,6 +20,7 @@
         </ul>
     </div>
 
+    <!-- second step -->
     <div *ngIf="currentStep == 2" class="step-2">
         <div class="container">
             <div class="d-flex flex-row align-items-end pb-3 mb-1">
@@ -48,6 +47,7 @@
         </div>
     </div>
 
+    <!-- third step -->
     <div *ngIf="currentStep == 3" class="step-3">
         <h4 class="pl-3">Scegli le categorie</h4>
         <ul class="m-0 p-0 d-flex flex-row justify-content-start flex-wrap" style="list-style: none;">
@@ -55,12 +55,33 @@
         </ul>
     </div>
 
+    <!-- fourth step -->
     <div *ngIf="currentStep == 4" class="step-4" class="pt-3 pb-3 pl-2 pr-2">
         <app-select-varians [images]="postMultimedias"></app-select-varians>
     </div>
 
+    <!-- last step -->
     <div *ngIf="currentStep == 5" class="step-5">
-        <h1>Composizione post e Pubblicazione</h1>
+        <div class="grid" #mydiv>
+            <div class="grid-item grid-item--width2"></div>
+            <div class="grid-item grid-item--height2"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item grid-item--width2 grid-item--height2"></div>
+            <div class="grid-item grid-item--width2"></div>
+            <div class="grid-item grid-item--width2"></div>
+            <div class="grid-item grid-item--height2"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item grid-item--width2"></div>
+            <div class="grid-item grid-item--height2"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item grid-item--width2 grid-item--height2"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item grid-item--width2"></div>
+            <div class="grid-item grid-item--height2"></div>
+            <div class="grid-item"></div>
+        </div>
     </div>
 </div>
 <div class="modal-footer">

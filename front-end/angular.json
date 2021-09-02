@@ -36,7 +36,9 @@
                             "node_modules/aos/dist/aos.js",
                             "node_modules/magic-grid/dist/magic-grid.min.js",
                             "node_modules/owl.carousel/dist/owl.carousel.min.js",
-                            "src/assets/js/instagram-embed.js"
+                            "src/assets/js/instagram-embed.js",
+                            "node_modules/packery/dist/packery.pkgd.min.js",
+                            "node_modules/packery/dist/draggabilly.pkgd.js"
                         ]
                     },
                     "configurations": {

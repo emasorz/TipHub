@@ -6,6 +6,10 @@ let port = process.env.PORT || 3000;
 const { mongoose } = require('./db/mongoose');
 
 const bodyParser = require('body-parser');
+const nodemailer = require("nodemailer");
+
+const { encrypt, decrypt } = require('./db/models/crypto');
+const jwt = require('jsonwebtoken')
 
 
 //Load in the mongoose models using index.js file instead load one at a time
@@ -178,9 +182,11 @@ app.delete('/test/:id', (req, res) => {
 app.post('/users', (req, res) => {
     // User sign up
 
+
     let body = req.body;
     let newUser = new User(body);
 
+    let id = newUser._id;
     newUser.save().then(() => {
         return newUser.createSession();
     }).then((refreshToken) => {
@@ -192,12 +198,49 @@ app.post('/users', (req, res) => {
             return { accessToken, refreshToken }
         });
     }).then((authTokens) => {
+        //before send response send activation email
+        let email = body.email;
+        let transporter = nodemailer.createTransport({
+            // service: 'Gmail',
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'christophe.roob57@ethereal.email', // ethereal user
+                pass: 'eRzpWfMc6wHcabkkXY' // ethereal password
+            },
+        });
+
+        const token = encrypt(email);
+        // const idtoken = encrypt(id);
+        console.log("id:", id);
+        const idtoken = encrypt(id + '');
+        console.log(idtoken.content);
+
+        const msg = {
+                from: 'christophe.roob57@ethereal.email', // sender address
+                to: `${email}`, // list of receivers
+                subject: "Activation Email", // Subject line
+                text: "Test Prova", // plain text body
+                html: `<a href="https://localhost:4200/account/mailVerification?id_token=${idtoken.content}-${idtoken.iv}&mail=${email}&v_token=${token.content}-${token.iv}">clicca per verificare l'email</a>`
+            }
+            // send mail with defined transport object
+        transporter.sendMail(msg).then(info => {
+            console.log("Message sent: %s", info.messageId);
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+            // Preview only available when sending through an Ethereal account
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        })
+
         // Now we construct and send the response to the user with their auth tokens in the header and the user object in the body
         res
             .header('x-refresh-token', authTokens.refreshToken)
             .header('x-access-token', authTokens.accessToken)
             .send(newUser);
     }).catch((e) => {
+        console.log(e);
         res.status(400).send(e);
     })
 })

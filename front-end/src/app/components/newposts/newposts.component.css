@@ -153,3 +153,103 @@
 .opt {
     cursor: pointer;
 }
+
+.flex {
+    display: flex;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.dcontainer {
+    padding: .5em;
+    border-radius: 8px;
+}
+
+.dcontainer:not(:last-child) {
+    margin-right: 8px;
+}
+
+.vamp {
+    background: rgba(255, 255, 255, 0.4);
+    list-style: none;
+    padding: 8px;
+    color: #222;
+}
+
+.vamp:not(:last-child) {
+    border-bottom: 1px solid #777;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: lightblue;
+}
+
+
+/* grid */
+
+.grid {
+    background: #DDD;
+    max-width: 1200px;
+}
+
+
+/* clear fix */
+
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/* ---- .grid-item ---- */
+
+.grid-item {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #C09;
+    border: 2px solid hsla(0, 0%, 0%, 0.5);
+}
+
+.grid-item--width2 {
+    width: 200px;
+}
+
+.grid-item--height2 {
+    height: 200px;
+}
+
+.grid-item:hover {
+    border-color: hsla(0, 0%, 100%, 0.5);
+    cursor: move;
+}
+
+.grid-item.is-dragging,
+.grid-item.is-positioning-post-drag {
+    background: #C90;
+    z-index: 2;
+}
+
+.packery-drop-placeholder {
+    outline: 3px dashed hsla(0, 0%, 0%, 0.5);
+    outline-offset: -6px;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+}
+
+
+/* Draggabilly adds is-dragging */
+
+.grid-item.is-dragging,
+
+/* Packery adds class while transitioning to drop position */
+
+.grid-item.is-positioning-post-drag {
+    background: #EA0;
+    z-index: 2;
+    /* keep dragged item on top */
+}
