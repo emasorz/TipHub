@@ -33,8 +33,8 @@ const routes: Routes = [
   { path: 'account/mailVerification', component: MailVerificationComponent},
   { path: 'profile/:id/product/:product', component:  ItemComponent, data:{animation: 'ItemPage'}},
   { path: 'profile/:id',      component:  ProfileComponent, data:{animation: 'ProfilePage'}, children:[
-    {path: '', redirectTo:'posts', pathMatch: 'full'},
-    {path: 'posts', component:PostsComponent},
+    {path: '', redirectTo:'trends', pathMatch: 'full'},
+    // {path: 'posts', component:PostsComponent},
     {path: 'flexs', component:FlexsComponent},
     {path: 'trends', component:TrendsComponent},
   ]},

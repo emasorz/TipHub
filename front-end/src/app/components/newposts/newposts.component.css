@@ -13,9 +13,14 @@
     border: 1.5px solid black;
     margin: .4em;
     cursor: pointer;
+    transition: all .5s ease-out;
 }
 
 .category:hover {
+    transform: scale(1.1);
+}
+
+.category-selected{
     color: white;
     background-color: black;
 }
@@ -191,7 +196,7 @@ a:active {
 /* grid */
 
 .grid {
-    background: #DDD;
+    background: white;
     max-width: 1200px;
 }
 
@@ -211,7 +216,6 @@ a:active {
     float: left;
     width: 100px;
     height: 100px;
-    background: #C09;
     border: 2px solid hsla(0, 0%, 0%, 0.5);
 }
 
@@ -224,7 +228,7 @@ a:active {
 }
 
 .grid-item:hover {
-    border-color: hsla(0, 0%, 100%, 0.5);
+    border-color: hsla(0, 0%, 100%, 0.308);
     cursor: move;
 }
 

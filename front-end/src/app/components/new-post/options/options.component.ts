@@ -3,6 +3,7 @@ import { WebRequestService } from 'src/app/services/web-request.service';
 
 import { Option } from 'src/app/models/option.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -18,18 +19,19 @@ export class OptionsComponent implements OnInit {
   newOption: Option;
 
 
-  constructor(private webService: WebRequestService, private spinner: NgxSpinnerService) {
+  constructor(private webService: WebRequestService, private spinner: NgxSpinnerService, private auth: AuthService) {
     this.userId = '60efccf23f045226ac85337b';
     this.options = [];
 
     this.spinner.show();
     //todo refactor: servizio a parte
-    this.webService.get(`users/${this.userId}/variantsoptions`).subscribe((res: any) => {
-      if (res && res.length > 0) {
+    this.webService.get(`users/${this.auth.getUserId()}/variantsoptions`).subscribe((res: any) => {
+      if (res && res.length >= 0) {
+        this.spinner.hide();
         for (let i = 0; i < res.length; i++) {
           this.options.push(new Option(res[i].title, res[i].options));
           console.log(this.options);
-          this.spinner.hide();
+          
         }
       }
     })
@@ -42,7 +44,7 @@ export class OptionsComponent implements OnInit {
   }
 
   submitNewOption() {
-    this.webService.post(`users/${this.userId}/variantsoptions`, this.newOption).subscribe((res) => {
+    this.webService.post(`users/${this.auth.getUserId()}/variantsoptions`, this.newOption).subscribe((res) => {
       if (res) {
         this.options.push(this.newOption);
         this.unsetNewOption();

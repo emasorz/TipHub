@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SocialsService } from '../../services/socials.service';
 
 import MagicGrid from "magic-grid";
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 declare var $: any
@@ -16,14 +17,25 @@ declare var $: any
 })
 export class ProfileComponent implements OnInit {
 
+  user:any; //todo class
   name: string;
 
 
   video:any;
   v:any;
 
-  constructor(private route: ActivatedRoute, public socialservice:SocialsService) {
-    this.name = this.route.snapshot.paramMap.get('id');
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.isLoggedIn().then((user)=>{
+      if(user[0]){
+        console.log("user:", user[0]);
+        this.user = user[0];
+      }else{
+        console.log("redirecting");
+        this.router.navigate(['login']);
+      }
+    }).catch(e =>{
+      console.log(e);
+    })
   }
 
   ngOnInit(): void {
@@ -38,11 +50,6 @@ export class ProfileComponent implements OnInit {
     var actPosition = $(".nav-tabs .active").position();
     $(".slider").css({"left":+ actPosition.left,"width": actWidth});
     //------------------------------------------------------------//
-
-    this.video = this.socialservice.getYtVideoInfo('8OdRMa5xVG8');
-   
-    this.video.subscribe(val => this.generateYoutubePost(val['items']));
-
   }
 
 
@@ -51,12 +58,5 @@ export class ProfileComponent implements OnInit {
    
   }
 
-  generateYoutubePost(item):void{
-    let i = item[0];
-    this.v = {
-      stat: i.statistics,
-      thumb: i.snippet.thumbnails.medium.url,
-      title: i.snippet.title
-    }
-  }
+
 }

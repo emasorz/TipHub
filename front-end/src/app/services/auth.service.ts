@@ -3,12 +3,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { WebRequestService } from './web-request.service';
 import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs/operators';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private webService: WebRequestService, private router: Router, private http: HttpClient) { }
+
+  constructor(private webService: WebRequestService, private router: Router, private http: HttpClient, private crypto: CryptoService) { }
 
   login(email: string, password: string) {
     return this.webService.login(email, password).pipe(
@@ -21,8 +23,8 @@ export class AuthService {
     )
   }
 
-  signup(name:string,email: string, password: string) {
-    return this.webService.signup(name,email, password).pipe(
+  signup(user) {
+    return this.webService.signup(user).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
         // the auth tokens will be in the header of this response
@@ -32,7 +34,22 @@ export class AuthService {
     )
   }
 
-
+  isLoggedIn() {
+    if (this.getUserId()) {
+      let id = this.getUserId();
+      return this.webService.get(`users/` + id).toPromise().then((res) => {
+        if (res.length == 0)
+          this.router.navigate(['login']);
+        else
+          return res;
+      }).catch((e) => {
+        console.error(e);
+        this.router.navigate(['login']);
+      })
+    } else {
+      this.router.navigate(['login']);
+    }
+  }
 
   logout() {
     this.removeSession();
@@ -49,7 +66,10 @@ export class AuthService {
   }
 
   getUserId() {
-    return localStorage.getItem('user-id');
+    if (localStorage.getItem('user-id'))
+      return this.crypto.get(localStorage.getItem('user-id'));
+    else
+      return undefined;
   }
 
   setAccessToken(accessToken: string) {
@@ -57,7 +77,7 @@ export class AuthService {
   }
 
   private setSession(userId: string, accessToken: string, refreshToken: string) {
-    localStorage.setItem('user-id', userId);
+    localStorage.setItem('user-id', this.crypto.set(userId));
     localStorage.setItem('x-access-token', accessToken);
     localStorage.setItem('x-refresh-token', refreshToken);
   }

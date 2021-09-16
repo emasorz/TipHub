@@ -4,10 +4,11 @@
 
     <ul class="opts p-2">
         <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">{{option.getTitle()}}</li>
-        <li class="opt" routerLink="/new-post/select-variants/options">Aggiungi opzioni</li>
     </ul>
 
 </div>
+
+
 
 <div class="select-grp p-2">
     <label for="" class="mt-2">Possible options:</label>

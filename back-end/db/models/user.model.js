@@ -8,14 +8,15 @@ const bcrypt = require('bcryptjs');
 const jwtSecret = 'Yx7v-3TFWVn7=@òL]&wqQV/2s%.[[-#e'
 
 const UserSchema = new mongoose.Schema({
-    name: { type: String, required: true, minlenght: 1, trim: true },
+    username: { type: String, required: true, minlenght: 1, trim: true },
     email: { type: String, required: true, minlenght: 1, trim: true, unique: true },
     password: { type: String, required: true, minlenght: 8, trim: true },
     icon: { type: String, required: false, minlenght: 1, trim: true, default: null },
     remeberMe: { type: String, required: false, minlenght: 1, trim: true, default: null },
     telephone: { type: Number, required: false, default: null },
     emailVerified: { type: Boolean, required: false, default: false },
-
+    firstName: {type:String, required: true, minlenght:1, trim:true},
+    lastName: {type:String, required: true, minlenght:1, trim:true},
     sessions: [{
         token: { type: String, required: true },
         expiresAt: { type: Number, required: true }

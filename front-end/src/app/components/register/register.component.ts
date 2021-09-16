@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       //alert("Submitted: " + JSON.stringify(this.model));
       this.spinner.show();
       this.isLoading = true;
-      this.authService.signup(this.model.username, this.model.email, this.model.password).subscribe((res: HttpResponse<any>) => {
+      this.authService.signup(this.model).subscribe((res: HttpResponse<any>) => {
         console.log(res);
         if(res.status==200){
           this.spinner.hide();  

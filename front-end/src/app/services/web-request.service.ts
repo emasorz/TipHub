@@ -14,20 +14,20 @@ export class WebRequestService {
     this.ROOT_URL = "http://localhost:3000";
   }
 
-  get(uri:string):Observable<any>{
-    return this.http.get(`${this.ROOT_URL}/${uri}`);
-  }
+  get<T>(uri:string):Observable<any>{
+    return this.http.get<T>(`${this.ROOT_URL}/${uri}`);
+  } 
 
-  post(uri:string, payload:Object){
-    return this.http.post(`${this.ROOT_URL}/${uri}`, payload);
+  post<T>(uri:string, payload:Object):Observable<any>{
+    return this.http.post<T>(`${this.ROOT_URL}/${uri}`, payload);
   }
 
   patch(uri:string, payload:Object){
     return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
   }
 
-  delete(uri:string){
-    return this.http.delete(`${this.ROOT_URL}/${uri}`);
+  delete<T>(uri:string):Observable<any>{
+    return this.http.delete<T>(`${this.ROOT_URL}/${uri}`);
   }
 
   login(email: string, password: string) {
@@ -39,12 +39,8 @@ export class WebRequestService {
       });
   }
 
-  signup(name: string, email: string, password: string) {
-    return this.http.post(`${this.ROOT_URL}/users`, {
-      name,
-      email,
-      password
-    }, {
+  signup(user) {
+    return this.http.post(`${this.ROOT_URL}/users`, user, {
         observe: 'response'
       });
   }

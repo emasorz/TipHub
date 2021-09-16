@@ -7,6 +7,7 @@ import { Product } from 'src/app/models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 export class User {
@@ -33,21 +34,25 @@ export class SelectVariansComponent implements OnInit {
   newProduct: Product;
 
   @Input() images;
+  @Input() postId;
 
-  constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient) {
+  constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient, private auth: AuthService) {
     let userId = '60efccf23f045226ac85337b';
     let productPostId = '610007be58ce5f248037e126';
     this.options = [];
     this.spinner.show();
     this.selected = [];
     this.newProduct = new Product();
+    this.products = [];
 
     //todo refactor: servizio a parte
-    this.webService.get(`users/${userId}/variantsoptions`).subscribe((res: any) => {
-      if (res && res.length > 0) {
+    this.webService.get(`users/${this.auth.getUserId()}/variantsoptions`).subscribe((res: any) => {
+      console.log("Risposta:", res);
+      if (res && res.length >= 0) {
+        this.spinner.hide();
         for (let i = 0; i < res.length; i++) {
           this.options.push(new Option(res[i].title, res[i].options));
-          this.spinner.hide();
+        
         }
       }
     })
@@ -66,7 +71,7 @@ export class SelectVariansComponent implements OnInit {
   getProduct(): Observable<Product[]> {
     let userId = '60efccf23f045226ac85337b';
     let productPostId = '610007be58ce5f248037e126';
-    return this.webService.get(`users/${userId}/productposts/${productPostId}/product`)
+    return this.webService.get(`users/${this.auth.getUserId()}/productposts/${this.postId}/product`)
       .pipe(
       
         map((data: any) => {
@@ -96,7 +101,7 @@ export class SelectVariansComponent implements OnInit {
   createNewProduct(){
     let userId = '60efccf23f045226ac85337b';
     let productPostId = '610007be58ce5f248037e126';
-    this.webService.post(`users/${userId}/productposts/${productPostId}/product`, this.newProduct).subscribe((res)=>{
+    this.webService.post(`users/${this.auth.getUserId()}/productposts/${this.postId}/product`, this.newProduct).subscribe((res)=>{
       console.log(res);
       this.products.push(this.newProduct);
     })

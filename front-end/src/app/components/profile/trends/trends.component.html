@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-10">
         <ul class="merch-grid-trends p-0 m-0">
-            <li data-toggle="modal" data-target=".bd-example-modal-lg" class="item-card p-2 d-flex justify-content-center align-items-center text-center btn mh-20">
+            <li (click)="initProductPost()" data-toggle="modal" data-target=".bd-example-modal-lg" class="item-card p-2 d-flex justify-content-center align-items-center text-center btn mh-20">
                 <strong class="p-5">Nuovo Post</strong>
             </li>
             <li *ngFor="let post of productPosts" class="item-card p-2">
@@ -39,7 +39,7 @@
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg ">
         <div class="modal-content">
-            <app-newposts></app-newposts>
+            <app-newposts [newpostId]="newPostId"></app-newposts>
         </div>
     </div>
 </div>

@@ -18,7 +18,8 @@ const { Test, User, Social, ProductPost, Address, VariantsOption, Product } = re
 /** MIDDLEWARE */
 
 //load Middleware
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }))
 
 // CORS HEADERS MIDDLEWARE
 app.use(function(req, res, next) {
@@ -285,6 +286,15 @@ app.get('/users', (req, res) => {
     });
 })
 
+app.get('/users/:user_id', authenticate, (req, res) => {
+    //return an array of the tests in the database
+    User.find({ _id: req.params.user_id } /** no query fields */ ).then((user) => {
+        res.send(user)
+    }).catch((e) => {
+        res.send(e);
+    });
+})
+
 /** testing */
 app.delete('/users/:email', (req, res) => {
     //delete the specified test
@@ -398,7 +408,8 @@ app.delete('/users/:userId/socials/:socialId', (req, res) => {
 app.get('/users/:userId/productposts', (req, res) => {
     //return an array of the productpost in the database of specific user
     ProductPost.find({
-        _userId: req.params.userId
+        _userId: req.params.userId,
+        isADraft: req.query.isADraft 
     }).then((productposts) => {
         res.send(productposts)
     }).catch((e) => {
@@ -418,7 +429,7 @@ app.post('/users/:userId/productposts', (req, res) => {
     let linkSocial = req.body.linkSocial;
     let description = req.body.description;
     let customFilter = req.body.customFilter;
-    let isADraft = req.body.isADraft;
+    let isADraft = true; //if created in this way is a draft
     let img = req.body.img;
 
     let newProductPost = new ProductPost({
@@ -444,6 +455,7 @@ app.post('/users/:userId/productposts', (req, res) => {
  */
 app.patch('/users/:userId/productposts/:productpostId', (req, res) => {
     //update the spcecified ProductPost with the new values specified in the JSON body of the request
+    console.log(req.body.img);
     ProductPost.findOneAndUpdate({
         _id: req.params.productpostId,
         _userId: req.params.userId
