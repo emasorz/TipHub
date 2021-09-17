@@ -92,5 +92,6 @@
 <div class="modal-footer">
     <!-- data-dismiss="modal" -->
     <button type="button" class="btn btn-secondary" (click)="prev()">Prev</button>
-    <button type="button" class="btn btn-primary" (click)="next();">Next</button>
+    <button *ngIf="currentStep != 5; else submit" type="button" class="btn btn-primary" (click)="next();">Next</button>
+    <ng-template #submit > <button type="button" class="btn btn-primary" (click)="onSubmit();" data-dismiss="modal" aria-label="Close">Submit</button></ng-template>
 </div> 

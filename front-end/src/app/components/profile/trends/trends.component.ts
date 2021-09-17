@@ -75,7 +75,7 @@ export class TrendsComponent implements OnInit {
 
       this.magicGridTrends.listen();
       this.refresh();
-    }, 300);
+    }, 800);
 
   }
 

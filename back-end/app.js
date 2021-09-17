@@ -455,7 +455,6 @@ app.post('/users/:userId/productposts', (req, res) => {
  */
 app.patch('/users/:userId/productposts/:productpostId', (req, res) => {
     //update the spcecified ProductPost with the new values specified in the JSON body of the request
-    console.log(req.body.img);
     ProductPost.findOneAndUpdate({
         _id: req.params.productpostId,
         _userId: req.params.userId

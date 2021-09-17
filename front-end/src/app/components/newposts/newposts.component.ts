@@ -105,7 +105,7 @@ export class NewpostsComponent implements OnInit {
   onSubmit(){
     console.log("Sto creando!");
     this.model.isADraft = false;
-    this.model.img = this.postMultimedias[this.selectedImg];
+    this.model.img = this.postMultimedias[this.selectedImg];  
     console.log(this.model);
     this.prodPostService.patchProductPost(this.auth.getUserId(),this.newpostId, this.model).subscribe((newProductpost:ProductPost)=>{
       console.log(newProductpost);
