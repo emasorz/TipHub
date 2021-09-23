@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SocialsService } from '../../services/socials.service';
 
 import MagicGrid from "magic-grid";
 import { takeUntil } from 'rxjs/operators';

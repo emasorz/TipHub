@@ -1,14 +1,6 @@
-import { ArrayType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-
-
-
-interface Insta1{
-  id: String;
-  access_token: String;
-};
+import {  Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -17,18 +9,37 @@ interface Insta1{
 })
 
 export class SettingsComponent implements OnInit {
+  user;
 
-
-  constructor() {
-
-
-   }
+  constructor(private auth:AuthService, private router:Router) {
+    this.auth.isLoggedIn().then((user)=>{
+      if(user[0]){
+        console.log("user:", user[0]);
+        this.user = user[0];
+      }else{
+        console.log("redirecting");
+        this.router.navigate(['login']);
+      }
+    }).catch(e =>{
+      console.log(e);
+    })
+  }
 
   
-  
-
 
   ngOnInit(): void {
     
   }
+
+  onClick(el){
+    console.log(el);
+    if(!el.classList.contains('selected')){
+      var selecteds = document.getElementsByClassName('selected');
+      for(let i = 0; i < selecteds.length; i++){
+        selecteds[i].classList.remove('selected');
+      }
+      el.classList.add('selected');
+    }
+  }
+
 }

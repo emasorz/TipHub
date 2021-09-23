@@ -279,7 +279,14 @@ app.post('/users/login', (req, res) => {
 /** testing */
 app.get('/users', (req, res) => {
     //return an array of the tests in the database
-    User.find({} /** no query fields */ ).then((users) => {
+    let criteria = new RegExp(req.query.search, 'i');
+    User.find(
+    {"$or": [ 
+        { "firstName" : { $regex: criteria }},
+        { "lastName" : { $regex: criteria }},
+        { "username" : { $regex: criteria }},
+    ]}
+    ).then((users) => {
         res.send(users)
     }).catch((e) => {
 

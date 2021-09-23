@@ -26,6 +26,10 @@ import { PostsComponent } from './components/profile/posts/posts.component';
 import { FlexsComponent } from './components/profile/flexs/flexs.component';
 import { TrendsComponent } from './components/profile/trends/trends.component';
 import { MailVerificationComponent } from './components/mail-verification/mail-verification.component';
+import { EditComponent } from './components/settings/edit/edit.component';
+import { AddressesComponent } from './components/settings/addresses/addresses.component';
+import { PasswordChangeComponent } from './components/settings/password-change/password-change.component';
+import { PaymentMethodsComponent } from './components/settings/payment-methods/payment-methods.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data:{animation: 'LoginPage'} },
@@ -45,7 +49,13 @@ const routes: Routes = [
   { path: '', component:  HomeComponent, data:{animation: 'HomePage'}},
   { path: 'testing/backend',component: BackendComponent, data:{animation: 'BackEndPage'}},
   { path: 'new-post/drafts', component:  DraftsComponent, data:{animation: 'DraftPage'}},
-  { path: 'settings', component:  SettingsComponent, data:{animation: 'SettingsPage'}},
+  { path: 'settings', component:  SettingsComponent, data:{animation: 'SettingsPage'}, children:[
+    {path: '', redirectTo:'edit', pathMatch: 'full'},
+    {path: 'edit', component:EditComponent},
+    {path: 'password/change', component:PasswordChangeComponent},
+    {path: 'addresses', component:AddressesComponent},
+    {path:'payment-methods', component:PaymentMethodsComponent}
+  ]},
   { path: 'new-post',      component:  NewPostComponent, data:{animation: 'NewPostPage'},
   children: [
 

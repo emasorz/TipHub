@@ -1,0 +1,66 @@
+<div class="container d-flex flex-column align-items-center w-75">
+    <div class="angry-grid w-100">
+        <div class="item-0 p-3"><img [src]="user.icon || '../../assets/default-avatar.png'" width="58"
+                class="rounded-circle" alt=""></div>
+        <div class="item-1 p-3 flex-column justify-content-center">
+            <h5>@{{user.username}}</h5>
+            <a class="" href="">Cambia immagine profilo</a>
+        </div>
+    </div>
+
+    <div class="angry-grid w-100">
+        <div class="item-0 p-3"><span class="text-nowrap">Nome e Cognome</span></div>
+        <div class="item-1 p-3 flex-column justify-content-center">
+            <div class="row">
+                <div class="col-lg-6"><input class="w-100" type="text" placeholder="firstName"
+                        [value]="user.firstName"></div>
+                <div class="col-lg-6"><input class="w-100" type="text" placeholder="lastName"
+                        [value]="user.lastName"></div>
+            </div>
+            <div class="small text-muted mt-2">
+                Aiuta le persone a scoprire il tuo account usando il nome che ti rappresenta meglio: il tuo
+                nome e cognome, un soprannome o il nome dell'azienda.
+            </div>
+        </div>
+    </div>
+
+    <div class="angry-grid w-100">
+        <div class="item-0 p-3"><span class="text-nowrap">Biografia</span></div>
+        <div class="item-1 p-3 flex-column justify-content-center">
+           <textarea name="biography" id="biography" cols="30" rows="4"></textarea>
+            <div class="small text-muted mt-2">
+                Aiuta le persone a scoprire il tuo account usando il nome che ti rappresenta meglio: il tuo
+                nome e cognome, un soprannome o il nome dell'azienda.
+            </div>
+        </div>
+    </div>
+
+    <div class="angry-grid w-100">
+        <div class="item-0 p-3"><span class="text-nowrap">Nome utente</span></div>
+        <div class="item-1 p-3 flex-column justify-content-center">
+            <input type="text" placeholder="username" [value]="user.username">
+            <div class="small text-muted mt-4">
+                <h6>informazioni personali</h6>
+                Fornisci le tue informazioni personali, anche se l'account viene usato per un'azienda, un
+                animale domestico o qualcos'altro. Non saranno visibili sul tuo profilo pubblico.
+            </div>
+        </div>
+    </div>
+
+    <div class="angry-grid w-100">
+        <div class="item-0 pl-3 pb-3 pr-3 pt-0"><span class="text-nowrap">E-mail</span></div>
+        <div class="item-1 pl-3 pb-3 pr-3 pt-0 flex-column justify-content-center">
+            <input type="text" placeholder="email" [value]="user.email">
+        </div>
+    </div>
+
+    <div class="angry-grid w-100">
+        <div class="item-0 p-3"><span class="text-nowrap">Numero di telefono</span></div>
+        <div class="item-1 p-3 flex-column justify-content-center">
+            <input type="text" placeholder="Numero di telefono" [value]="user.telephone || ''">
+        </div>
+    </div>
+
+
+    <button class="btn text-white m-4 w-25" [disabled]="true" style="background-color: #06D6A0;">invia</button>
+</div>

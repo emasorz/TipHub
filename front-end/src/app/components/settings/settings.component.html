@@ -1,0 +1,20 @@
+<div class="container bg-light border rounded w-75" style="margin-bottom: 200px;">
+    <div class="row bold">
+        <div class="col-sm-3 pl-0 border-right">
+            <ul class="d-flex flex-column m-0 p-0">
+                <li (click)="onClick($event.target)" [routerLink]="['edit']" class="list-item p-3 selected pointer">Modifica Profilo</li>
+                <li (click)="onClick($event.target)" [routerLink]="['password','change']" class="list-item p-3 pointer">Modifica Password</li>
+                <li (click)="onClick($event.target)" [routerLink]="['addresses']" class="list-item p-3 pointer">Indirizzi</li>
+                <li (click)="onClick($event.target)" class="list-item p-3 pointer">Email e SMS</li>
+                <li (click)="onClick($event.target)" [routerLink]="['payment-methods']" class="list-item p-3 pointer">Metodi di pagamento</li>
+                <li (click)="onClick($event.target)" class="list-item p-3 pointer">Gestisci socials</li>
+                <li (click)="onClick($event.target)" class="list-item p-3 pointer">Privacy e sicurezza</li>
+                <li (click)="onClick($event.target)" class="list-item p-3 pointer">Attività di accesso</li>
+                <li (click)="onClick($event.target)" class="list-item p-3 pointer">E-mail di TipHub</li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

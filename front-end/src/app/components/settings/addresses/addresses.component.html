@@ -1,0 +1,23 @@
+<div class="container d-flex flex-column align-items-center">
+    <h3>I tuoi indirizzi</h3>
+    <div class="d-flex flex-wrap flex-row justify-content-start mt-1 pt-1 w-100">
+        <div class="m-1 border rounded h-50"*ngFor="let i of [1,2,3]" style="width: 45%;">
+            <div class="card-body p-2 d-flex flex-column no-bold">
+                <h6>Emanuele Sorzana</h6>
+                <span>Via Cesare Cabella 1</span>
+                <span>Int. 8</span>
+                <span>Genova, Genova 16122</span>
+                <span>Italia</span>
+                <span>Numero di telefono: 3270005881</span>
+                <span><a>Aggiungi istruzioni per la consegna</a></span>
+            </div>
+            <div class="small card-footer">
+                <a>Modifica </a> | <a>Rimuovi</a>
+            </div>
+        </div>
+        <div class="m-1 border rounded h-50 d-flex justify-content-center flex-column align-items-center text-center p-4" style="width: 45%; height: 100%;">
+           <span>+</span>
+           <span class="text-wrap">Aggiungi nuovo Indirizzo</span>
+        </div>
+    </div>
+</div>

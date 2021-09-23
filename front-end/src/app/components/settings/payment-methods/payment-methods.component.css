@@ -1,0 +1,28 @@
+
+.card{
+    width: 40%;
+    margin: 1.3em;   
+    background-image: url('../../../../assets/world-map.png');  
+    background-size: cover; 
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.card:nth-child(odd){
+    background-image: url('../../../../assets/bgc.png');  
+}
+
+.card-part{
+    padding: .7em;
+}
+
+.right-bottom{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.no-bg{
+    background-image: none !important;
+}

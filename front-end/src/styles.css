@@ -24,3 +24,15 @@ ul {
 .grid-stack-item-content {
     background-color: #18BC9C;
 }
+
+.pointer{
+    cursor: pointer;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.no-bold{
+    font-weight: normal !important;
+}
