@@ -10,7 +10,8 @@ const { Address } = require("./address.model");
 const { Multimedia } = require("./multimedia.model");
 const { Social } = require("./social.model");
 const { CartItem } = require("./cartItem.model");
-const { VariantsOption } = require('./variantsOption.model')
+const { VariantsOption } = require('./variantsOption.model');
+const { PaymentMethod } = require("./paymentMethod.model");
 
 module.exports = {
     Test,
@@ -23,5 +24,6 @@ module.exports = {
     ProductPost,
     Review,
     Order,
-    VariantsOption
+    VariantsOption,
+    PaymentMethod
 }

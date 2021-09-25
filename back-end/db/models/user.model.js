@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema({
     emailVerified: { type: Boolean, required: false, default: false },
     firstName: {type:String, required: true, minlenght:1, trim:true},
     lastName: {type:String, required: true, minlenght:1, trim:true},
+    biography: {type:String, required: true, minlenght:1, trim:true},
     sessions: [{
         token: { type: String, required: true },
         expiresAt: { type: Number, required: true }

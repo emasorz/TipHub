@@ -1,5 +1,6 @@
+<h4 class="text-center">I tuoi metodi di pagamento</h4>
 <div class="container d-flex flex-row align-items-center flex-wrap no-bold">
-    <div class="card pt-2 pb-3" *ngFor="let i of [1,2,3,4]; let index = index">
+    <div class="card no-bg  pt-2 pb-3" *ngFor="let paymentMethod of paymentMethods; let index = index">
       <div class="card-front card-part w-100 d-flex flex-column">
             <div class="w-100 d-flex flex-row justify-content-between">
                 <img src="../../../../assets/chip.png" width="80" alt="">
@@ -10,34 +11,68 @@
                 <span>****</span>
                 <span>****</span>
                 <span>****</span>
-                <span>1234</span>
+                <span>{{paymentMethod.number % 10000}}</span>
             </div>
-
             <div class="w-100 d-flex flex-row justify-content-around">
                 <div class="d-flex flex-column small">
                     <span>titolare</span>
-                    <span>Emanuele Sorzana</span>
+                    <span>{{paymentMethod.owner}}</span>
                 </div>
                 <div class="d-flex flex-column small">
                     <span>Data scadenza</span>
-                    <span>12/24</span>
+                    <span>{{paymentMethod.MM}}/{{paymentMethod.YY}}</span>
                 </div>
             </div>
       </div>
-      
-      <!-- <div class="card-back card-part">
-        <div class="card__black-line"></div>
-        <div class="card__back-content">
-          <div class="card__secret">
-            <p class="card__secret--last">420</p>
-          </div>
-        </div>
-      </div> -->
-      <i (click)="onEyeClick($event.target)" class="fa fa-eye-slash right-bottom"></i>
+      <span class="pointer right-bottom" (click)="onDelete(paymentMethod['_id'])"><i class="fa fa-trash"></i></span>
     </div>
 
-    <div class="card pt-1 pb-1 d-flex flex-column justify-content-center align-items-center no-bg">
+    <div class=" pt-1 pb-1 no-bg">
+      <div class="container text-wrap rounded d-flex flex-column justify-content-center align-items-center " style="border: 2px dashed #d0d0d0">
         <span>+</span>
-        <span><a href="">Aggiungi metodo di pagamento</a></span>
+        <span class="text-wrap"><button class="btn" data-toggle="modal" data-target="#addressModal">Aggiungi nuovo
+          metodo di pagamento</button></span>
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-group">
+                        <label class="mandatory" for="owner">Owner</label>
+                        <input type="text" class="form-control" id="owner"  placeholder="Owner" name="owner" [(ngModel)]="model.owner" #owner="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="mandatory" for="number">Card Number</label>
+                      <input type="number" class="form-control" id="number"  placeholder="Number" name="number" [(ngModel)]="model.number" #number="ngModel" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="mandatory" for="cvc">CVC</label>
+                    <input type="number" class="form-control" id="cvc"  placeholder="CVC" name="cvc" [(ngModel)]="model.cvc" #cvc="ngModel" required>
+                </div>
+                  <div class="form-group">
+                    <label class="mandatory" for="MM">MM</label>
+                    <input type="number" class="form-control" id="MM"  placeholder="MM" name="MM" [(ngModel)]="model.MM" #MM="ngModel" required>
+                </div>
+                <div class="form-group">
+                  <label class="mandatory" for="YY">YY</label>
+                  <input type="number" class="form-control" id="YY"  placeholder="YY" name="YY" [(ngModel)]="model.YY" #MM="ngModel" required>
+              </div>
+                  
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

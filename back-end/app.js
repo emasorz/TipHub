@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken')
 
 
 //Load in the mongoose models using index.js file instead load one at a time
-const { Test, User, Social, ProductPost, Address, VariantsOption, Product } = require("./db/models");
+const { Test, User, Social, ProductPost, Address, VariantsOption, Product, PaymentMethod } = require("./db/models");
 
 /** MIDDLEWARE */
 
@@ -312,6 +312,18 @@ app.delete('/users/:email', (req, res) => {
     })
 })
 
+app.patch('/users/:id', (req, res) => {
+    //update the spcecified test with the new values specified in the JSON body of the request
+    console.log(req.body);
+    User.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        $set: req.body
+    }).then(() => {
+        res.sendStatus(200);
+    })
+})
+
 /**
  * GET /users/me/access-token
  * Purpose: generates and returns an access token
@@ -514,21 +526,32 @@ app.get('/users/:userId/addresses', (req, res) => {
 app.post('/users/:userId/addresses', (req, res) => {
     //create a new social and return the new address document back to the user (wich includes the id)
     //the list information (fields) will be passed in via the JSON request body
+    let owner = req.body.owner;
     let country = req.body.country; //for to do this. is require install and setup body-parser
     let city = req.body.city;
     let zipCode = req.body.zipCode;
     let street = req.body.street;
-    let CAP = req.body.CAP;
     let type = req.body.type;
+    let def = req.body.default;
+    let civ = req.body.civ;
+    let int = req.body.int;
+    let phone = req.body.phone;
+    let indications_info = req.body.indications_info;
+ 
 
     let newAddress = new Address({
+        owner,
         country,
         city,
         zipCode,
         street,
-        CAP,
+        _userId: req.params.userId,
         type,
-        _userId: req.params.userId
+        def,
+        civ,
+        int, 
+        phone,
+        indications_info
     });
 
     newAddress.save().then((AddressDoc) => {
@@ -724,7 +747,83 @@ app.delete('/users/:userId/productposts/:productpostId/product/productId', (req,
 })
 
 
+/**
+ * PAYMENTSMETHOD ROUTE
+ */
 
+/**
+ * GET /users/:userId/payment-methods
+ * Purpose: get all payment-methods of specific user
+ */
+ app.get('/users/:userId/payment-methods', (req, res) => {
+    //return an array of the productpost in the database of specific user
+    PaymentMethod.find({
+        _userId: req.params.userId
+    }).then((paymentMethod) => {
+        res.send(paymentMethod)
+    }).catch((e) => {
+        res.send(e);
+    });
+})
+
+/**
+ * POST /users/:userId/payment-methods
+ * Purpose: create a payment method
+ */
+app.post('/users/:userId/payment-methods', (req, res) => {
+    //create a new social and return the new payment-methods document back to the user (wich includes the id)
+    //the list information (fields) will be passed in via the JSON request body
+    let owner = req.body.owner;
+    let number = req.body.number;
+    let cvc = req.body.cvc;
+    let MM = req.body.MM;
+    let YY = req.body.YY;
+
+    let newPaymentMethod = new PaymentMethod({
+        owner,
+        number,
+        cvc,
+        MM,
+        YY,
+        _userId: req.params.userId,
+    });
+
+    newPaymentMethod.save().then((paymentMethodDoc) => {
+        //the full document is returned
+        res.send(paymentMethodDoc);
+    });
+})
+
+/**
+ * PATCH /users/:userId/payment-methods/:paymentMethodId
+ * Purpose: Update specified payment method
+ */
+app.patch('/users/:userId/payment-methods/:paymentMethodId', (req, res) => {
+    //update the spcecified address with the new values specified in the JSON body of the request
+    PaymentMethod.findOneAndUpdate({
+        _id: req.params.paymentMethodId,
+        _userId: req.params.userId
+    }, {
+        $set: req.body
+    }).then(() => {
+        res.sendStatus(200);
+    })
+
+})
+
+/**
+ * DELETE /users/:userId/payment-methods/:paymentMethodId
+ * Purpose: Delete specified payment method
+ */
+app.delete('/users/:userId/payment-methods/:paymentMethodId', (req, res) => {
+    //delete the specified social
+    PaymentMethod.findOneAndRemove({
+        _id: req.params.paymentMethodId,
+        _userId: req.params.userId
+    }).then((removedPaymentMethodDoc) => {
+        res.send(removedPaymentMethodDoc);
+    })
+})
 
 
 //start server on port 3000

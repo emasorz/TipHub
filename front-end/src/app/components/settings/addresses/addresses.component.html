@@ -1,23 +1,87 @@
 <div class="container d-flex flex-column align-items-center">
     <h3>I tuoi indirizzi</h3>
     <div class="d-flex flex-wrap flex-row justify-content-start mt-1 pt-1 w-100">
-        <div class="m-1 border rounded h-50"*ngFor="let i of [1,2,3]" style="width: 45%;">
-            <div class="card-body p-2 d-flex flex-column no-bold">
-                <h6>Emanuele Sorzana</h6>
-                <span>Via Cesare Cabella 1</span>
-                <span>Int. 8</span>
-                <span>Genova, Genova 16122</span>
-                <span>Italia</span>
-                <span>Numero di telefono: 3270005881</span>
-                <span><a>Aggiungi istruzioni per la consegna</a></span>
+        <div class="m-1 border rounded position-relative" *ngFor="let address of addresses" style="width: 45%; min-height:275px">
+            <div class="card-body h-100 p-2 d-flex flex-column no-bold">
+                <h6>{{address.owner}}</h6>
+                <span>{{address.street}} {{address.civ}}</span>
+                <span>Int. {{address.int}}</span>
+                <span>{{address.city}}, {{address.city}} {{address.zipCode}}</span>
+                <span>{{address.country}}</span>
+                <span *ngIf="address.phone">Numero di telefono: {{address.phone}}</span>
+                <div class="border-bottom w-100 mt-3 mb-1"></div>
+                <span *ngIf="!address.indications_info; else indications"><a>Aggiungi istruzioni per la consegna</a></span>
+                <ng-template #indications>
+                    <span class="small">{{address.indications_info}}</span>
+                </ng-template>
             </div>
-            <div class="small card-footer">
-                <a>Modifica </a> | <a>Rimuovi</a>
+            <div class="small card-footer position-absolute w-100 mt-4" style="bottom: 0;">
+                <a>Modifica</a> | <a class="pointer" (click)="onDelete(address['_id'])">Rimuovi</a>
             </div>
         </div>
-        <div class="m-1 border rounded h-50 d-flex justify-content-center flex-column align-items-center text-center p-4" style="width: 45%; height: 100%;">
-           <span>+</span>
-           <span class="text-wrap">Aggiungi nuovo Indirizzo</span>
+        <div class="m-1 border rounded d-flex justify-content-center flex-column align-items-center text-center p-4"
+            style="width: 45%;">
+            <span>+</span>
+            <span class="text-wrap"><button class="btn" data-toggle="modal" data-target="#addressModal">Aggiungi nuovo
+                    Indirizzo</button></span>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-group">
+                        <label class="mandatory" for="owner">Owner</label>
+                        <input type="text" class="form-control" id="owner"  placeholder="Owner" name="owner" [(ngModel)]="model.owner" #owner="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory"  for="street">Street</label>
+                        <input type="text" class="form-control" id="street"  placeholder="Enter Street" name="street" [(ngModel)]="model.street" #firstName="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory"  for="civ">Civ</label>
+                        <input type="text" class="form-control" id="civ"  placeholder="Civ" name="civ" [(ngModel)]="model.civ" #civ="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory" for="int">Int</label>
+                        <input type="text" class="form-control" id="int"  placeholder="Int" name="int" [(ngModel)]="model.int" #int="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory" for="country">Country</label>
+                        <input type="text" class="form-control" id="country" placeholder="Country" name="country" [(ngModel)]="model.country" #country="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory" for="zipCode">ZipCode</label>
+                        <input type="text" class="form-control" id="zipcode"  placeholder="ZipCode" name="zipCode" [(ngModel)]="model.zipCode" #zipCode="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mandatory" for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="City" name="city" [(ngModel)]="model.city" #city="ngModel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Phone</label>
+                        <input type="number" class="form-control" id="phone" placeholder="Phone" name="phone" [(ngModel)]="model.phone" #phone="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Indications</label>
+                        <input type="text" class="form-control" id="indications_info" placeholder="Indications" name="indications_info" [(ngModel)]="model.indications_info" #indications_info="ngModel">
+                    </div>
+                  
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
