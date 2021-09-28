@@ -1,7 +1,9 @@
 <div class="blob-background full-height">
     <div class="row justify-center">
+       
         <form class="col-md-4 justify-center column form-container" (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <h4>Log In</h4>
+            <app-message-box></app-message-box>
             <input type="text" placeholder="E-mail" id="emial" required [(ngModel)]="email" name="email" #mail="ngModel">
             <input type="password" placeholder="Password" id="password" required [(ngModel)]="password" name="password" #pswrd="ngModel">
             <div class="justify-around">

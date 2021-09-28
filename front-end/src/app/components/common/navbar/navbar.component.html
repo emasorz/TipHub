@@ -3,21 +3,22 @@
         <div class="base-b">
             <div class="wht w-100 container">
                 <img src="../../../../assets/logo.png" alt="" class="logo" height="48" width="48" [routerLink]="['/']">
-                <form class="search" action="">
+                <form class="search align-self-center" action="">
                     <div class="form-group has-search m-0 p-0">
                         <span (click)="search(search.value)"class="fa fa-search form-control-feedback"></span>
                         <input (keydown)="enterSubmit($event)" type="text" #search class="form-control" placeholder="Search...">
                     </div>
                 </form>
-                <div class="acs">
+                <div *ngIf="!user" class="acs align-self-end">
                     <a href="" class=" right l-i" [routerLink]="['/login']">Log In</a>
-                    <a href="" class=" right s-i" [routerLink]="['/register']">Sign In</a>
+                    <a href="" class=" right s-i" [routerLink]="['/register']">Sign Up</a>
                 </div>
             </div>
         </div>
         <div class="base-w">
             <div class="blk w-100">
-                <img class="prf" src="../../../../assets/profile.png" alt="" width="40" height="40" [routerLink]="['/profile/emasorz']">
+                <img *ngIf="!user" class="prf" [src]="'../../../../assets/default-avatar.png'" alt="" width="40" height="40" [routerLink]="['/profile/emasorz']">
+                <img *ngIf="user" class="prf" [src]="user.icon || '../../../../assets/default-avatar.png'" alt="" width="40" height="40" [routerLink]="['/profile/emasorz']">
                 <ul class="social-link m-0 p-1">
                     <li [routerLink]="['/categories']"><a><i class="fa fa-group"></i></a></li>
                     <li [routerLink]="['/cart']"><a><i class="fa fa-shopping-cart"></i></a></li>

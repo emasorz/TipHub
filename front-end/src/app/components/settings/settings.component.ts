@@ -42,4 +42,8 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  onLogOut(){
+    this.auth.logout();
+  }
+
 }

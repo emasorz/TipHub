@@ -23,10 +23,10 @@
 
     <div class="inpt">
         <label for="">Price</label>
-        <input #price (keyup)="newProduct.price = price.value" type="number" class="prc">
+        <input #price (keyup)="newProduct.price = price.value; limitPrice($event.target)" type="number" class="prc" step="0.01" min="0">
     </div>
 
-    <div class="cmr-btn" [routerLink]="['/new-post/select-variants/images']"><i class="fa fa-camera"></i></div>
+    <div class="cmr-btn"><i class="fa fa-camera"></i></div>
     <button class="btn btn-light border" (click)="createNewProduct()"><i class="fa fa-check"></i></button>
 </div>
 

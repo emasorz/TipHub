@@ -15,19 +15,16 @@
             <li (click)="initProductPost()" data-toggle="modal" data-target=".bd-example-modal-lg" class="item-card p-2 d-flex justify-content-center align-items-center text-center btn mh-20">
                 <strong class="p-5">Nuovo Post</strong>
             </li>
-            <li *ngFor="let post of productPosts" class="item-card p-2">
+            <li *ngFor="let post of productPosts; let i = index;" class="item-card p-2">
                 <div class="img-desc d-flex flex-column justify-content-center align-items-center">
-                    <img src="{{post.img}}" alt="merch image" width="130">
+                    <img src="{{post.img}}" class="pointer"  [routerLink]="['/profile', 'name', 'product', post['_id']]" alt="merch image" width="130">
                     <p>{{post.description}}</p>
                 </div>
                 <h5>{{post.title}}</h5>
-                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a data-toggle="collapse" href="#collapseExample-{{i}}" role="button" aria-expanded="false" [attr.aria-controls]="'collapseExample-'+ i">
                    Show Price
                 </a>
-                <a routerLink="/profile/name/product/jacket"> 
-                    See details
-                </a>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample-{{i}}">
                     <span class="price">65</span>
                 </div>
             </li>

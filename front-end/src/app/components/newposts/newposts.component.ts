@@ -117,6 +117,13 @@ export class NewpostsComponent implements OnInit {
 
   }
 
+  onLimitTextLenght(target){
+    console.log(target.value);
+    if(target.value.length >= 140){
+      target.value = target.substring(0, 140);
+    }
+  }
+
 
 
   /**
@@ -134,10 +141,10 @@ export class NewpostsComponent implements OnInit {
   }
 
   
-  onRemove(event) {
-    let position = this.files.indexOf(event);
-    this.postMultimedias.splice(position, 1);
-    this.files.splice(position, 1);
+  onRemove(index) {
+    //let position = this.files.indexOf(event);
+    this.postMultimedias.splice(index, 1);
+    this.files.splice(index, 1);
   }
 
 
@@ -174,12 +181,14 @@ export class NewpostsComponent implements OnInit {
 
   //rename
   handleCategory(target, category){
-    if(this.model.customFilter.includes(category)){
+    if(this.model.customFilter.indexOf(category) >-1){
       target.classList.remove('category-selected');
-      this.model.customFilter.splice(this.category.indexOf(category),1);
+      this.model.customFilter.splice(this.model.customFilter.indexOf(category),1);
     }else{
-      this.model.customFilter.push(category);
-      target.classList.add('category-selected');
+      if(this.model.customFilter.length < 3){
+        target.classList.add('category-selected');
+        this.model.customFilter.push(category);
+      }
     }
   }
 

@@ -38,23 +38,24 @@ export class AuthService {
     if (this.getUserId()) {
       let id = this.getUserId();
       return this.webService.get(`users/` + id).toPromise().then((res) => {
-        if (res.length == 0)
-          this.router.navigate(['login']);
-        else
           return res;
       }).catch((e) => {
         console.error(e);
-        this.router.navigate(['login']);
       })
     } else {
-      this.router.navigate(['login']);
+      return undefined;
     }
+  }
+
+  verifyEmail(idtoken: Object, email: string, vtoken: Object) {
+    console.log(`${this.webService.ROOT_URL}/users/verifyemail`);
+    return this.webService.post(`users/verifyemail`, { 'id_token': idtoken, 'email': email, 'v_token': vtoken });
   }
 
   logout() {
     this.removeSession();
 
-    //this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
 
   getAccessToken() {

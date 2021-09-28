@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 
  import { NgxSpinnerModule } from "ngx-spinner";
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -54,7 +53,7 @@ import { EditComponent } from './components/settings/edit/edit.component';
 import { PasswordChangeComponent } from './components/settings/password-change/password-change.component';
 import { AddressesComponent } from './components/settings/addresses/addresses.component';
 import { PaymentMethodsComponent } from './components/settings/payment-methods/payment-methods.component';
-
+import { MessageBoxComponent } from './components/common/message-box/message-box.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +91,8 @@ import { PaymentMethodsComponent } from './components/settings/payment-methods/p
     EditComponent,
     PasswordChangeComponent,
     AddressesComponent,
-    PaymentMethodsComponent
+    PaymentMethodsComponent,
+    MessageBoxComponent
   ],
   imports: [
     BrowserModule,

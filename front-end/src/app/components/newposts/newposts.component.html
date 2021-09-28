@@ -10,13 +10,16 @@
 <div class="modal-body ">
     <!-- first step -->
     <div *ngIf="currentStep==1 " class="step-1 ">
-        <ngx-dropzone (change)="onSelect($event, postMultimedias) " style="width: 100%; min-height:200px ">
+        <ngx-dropzone #dropzone (change)="onSelect($event, postMultimedias) " style="width: 100%; min-height:200px ">
             <ngx-dropzone-label>Drop an image!</ngx-dropzone-label>
         </ngx-dropzone>
 
         <h6 *ngIf="postMultimedias.length> 1">Seleziona il prodotto principale</h6>
         <ul class="w-100 m-0 p-0 d-flex flex-row ml-2 mr-2" style="list-style: none;">
-            <li class="m-1 p-1 rounded pointers" (click)="selectedImg = i; model.img=postMultimedias[selectedImg]" [ngStyle]="{'border':selectedImg === i ? '3px solid #06D6A0':'1px solid #dee2e6'}" *ngFor="let image of postMultimedias; let i = index"><img [src]="image" alt="" width="100" height="100"></li>
+            <li class="m-1 p-1 rounded pointers position-relative" (click)="selectedImg = i; model.img=postMultimedias[selectedImg]" [ngStyle]="{'border':selectedImg === i ? '3px solid #06D6A0':'1px solid #dee2e6'}" *ngFor="let image of postMultimedias; let i = index">
+                <img [src]="image" alt="" width="100" height="100">
+                <span class="postion-absolute pointer" style="left:5px; top:5px;" (click)="onRemove(i)">x</span>
+            </li>
         </ul>
     </div>
 
@@ -28,11 +31,13 @@
                     <img class="border rounded p-1" [src]="postMultimedias[selectedImg]" alt="" width="100" height="100">
                     <input class="w-100 ml-3 pl-4" type="text" placeholder="Inserisci Titolo" name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
                 </div>
+               
                 <div class="d-flex flex-row-align-itesm-end mb-1">
-                    <textarea placeholder="Inserisci descrizione" rows="1" class="w-100" name="description" class="form-control" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required></textarea>
+                    <textarea placeholder="Enter short description" rows="1" class="w-100"  name="summary" class="form-control" [(ngModel)]="model.summary" #summary="ngModel" [ngClass]="{ 'is-invalid': f.submitted && summary.invalid }" required></textarea>
                 </div>
-                <div class="d-flex flex-row-align-itesm-end mb-1">
-                    <textarea placeholder="Inserisci riassunto" rows="1" class="w-100"  name="summary" class="form-control" [(ngModel)]="model.summary" #summary="ngModel" [ngClass]="{ 'is-invalid': f.submitted && summary.invalid }" required></textarea>
+                <div class="d-flex flex-row-align-itesm-end mb-1 position-relative">
+                    <textarea placeholder="Enter long description" #desc (keydown)="onLimitTextLenght($event.target)" rows="1" class="w-100" name="description" class="form-control" [(ngModel)]="model.description" #description="ngModel" [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required></textarea>
+                    <span class="position-absolute" style="right: 5px; bottom: 5px">{{desc.value.length}}/140</span>
                 </div>
                 <!-- <div class="pt-4 pb-4">
                     <button class="btn border rounded">inserisci tag</button>
@@ -59,6 +64,8 @@
         <ul class="m-0 p-0 d-flex flex-row justify-content-start flex-wrap" style="list-style: none;">
             <li class="border category" *ngFor="let cat of category; let index = index" (click)="handleCategory($event.target, cat)">{{cat}}</li>
         </ul>
+
+        {{model.customFilter}}
     </div>
 
     <!-- fourth step -->

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   model: Register;
   isLoading: boolean;
   successful:boolean;
-  email1;
+  password1;
 
   socialUser:SocialUser;
   isLoggedin:boolean;

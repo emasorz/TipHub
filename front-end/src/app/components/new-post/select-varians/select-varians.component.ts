@@ -106,4 +106,19 @@ export class SelectVariansComponent implements OnInit {
       this.products.push(this.newProduct);
     })
   }
+
+  limitPrice(target){
+    let value = target.value;
+
+    let number = target.value.toString();
+
+    if(number.includes('.')){
+      let a = Math.floor(value);
+      number = number.split('.');
+      console.log(number);
+      console.log(number[1].length);
+    }
+
+   
+  }
 }
