@@ -9,12 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  user: User;
+  user: User  ;
+  isloading: boolean = true;
   constructor(private router: Router, private auth: AuthService) {
     if (this.auth.isLoggedIn()) {
       this.auth.isLoggedIn().then((user) => {
         if (user[0]) {
           console.log("user:", user[0]);
+          
           this.user = user[0];
         } else {
           console.log("redirecting");
@@ -23,6 +25,8 @@ export class NavbarComponent implements OnInit {
       }).catch(e => {
         console.log(e);
       })
+    }else{
+      this.isloading = false;
     }
   }
 

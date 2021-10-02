@@ -17,7 +17,8 @@ export class AuthService {
       shareReplay(),
       tap((res: HttpResponse<any>) => {
         // the auth tokens will be in the header of this response
-        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+        console.log(res);
+        //this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
         console.log("LOGGED IN!");
       })
     )
@@ -55,7 +56,7 @@ export class AuthService {
   logout() {
     this.removeSession();
 
-    this.router.navigate(['/login']);
+    window.location.href = '/login';
   }
 
   getAccessToken() {

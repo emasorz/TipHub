@@ -7,6 +7,8 @@ export class ProductPost{
     customFilter:string[];
     userId:string;
     linkSocials:string[];
+    price:string;
+    _id:string;
 
     constructor( productPost?: ProductPost ) {
         if(productPost)

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations'
 import { WebRequestService } from 'src/app/services/web-request.service';
 
@@ -11,6 +11,10 @@ import { initPackery } from '../../../assets/js/packery';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductPost } from 'src/app/models/productPost.model';
 import { ProductPostService } from 'src/app/services/product-post.service';
+import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/models/product.model';
+import { MessageBoxComponent, MsgCode} from '../common/message-box/message-box.component';
+
 
 @Component({
   selector: 'app-newposts',
@@ -54,12 +58,15 @@ export class NewpostsComponent implements OnInit {
     "Altro"
   ];
 
-  
+
   @Input() newpostId = null;
+  @Output() newPostEvent = new EventEmitter<ProductPost>();
+
   @ViewChild(StepperComponent) stepper: StepperComponent;
+  @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
 
   @ViewChild('mydiv') set div(div: ElementRef) {
-    if (div) { 
+    if (div) {
       // initially setter gets called with undefined
       console.log(div);
       initPackery();
@@ -68,7 +75,7 @@ export class NewpostsComponent implements OnInit {
   model: ProductPost;
 
   files: File[] = [];
-  isOptions:boolean;
+  isOptions: boolean;
   postMultimedias: any = [];
   selectedImg = 0;
   currentStep = 1;
@@ -78,10 +85,11 @@ export class NewpostsComponent implements OnInit {
   selected = [];
 
   constructor(private webService: WebRequestService,
-              private spinner: NgxSpinnerService,
-              private auth: AuthService,
-              private prodPostService:ProductPostService
-  ){
+    private spinner: NgxSpinnerService,
+    private auth: AuthService,
+    private prodPostService: ProductPostService,
+    private prodService: ProductService
+  ) {
     this.isOptions = false;
     this.model = new ProductPost();
     this.model.customFilter = [];
@@ -98,17 +106,18 @@ export class NewpostsComponent implements OnInit {
         }
       }
     })
-
-
   }
 
-  onSubmit(){
+
+  onSubmit() {
     console.log("Sto creando!");
     this.model.isADraft = false;
-    this.model.img = this.postMultimedias[this.selectedImg];  
+    this.model.img = this.postMultimedias[this.selectedImg];
     console.log(this.model);
-    this.prodPostService.patchProductPost(this.auth.getUserId(),this.newpostId, this.model).subscribe((newProductpost:ProductPost)=>{
-      console.log(newProductpost);
+    this.prodPostService.patchProductPost(this.auth.getUserId(), this.newpostId, this.model).subscribe((newProductpost: ProductPost) => {
+      newProductpost['_id'] = this.newpostId;
+      this.newPostEvent.emit(newProductpost);
+      this.onReset();
     })
   }
 
@@ -117,10 +126,12 @@ export class NewpostsComponent implements OnInit {
 
   }
 
-  onLimitTextLenght(target){
-    console.log(target.value);
-    if(target.value.length >= 140){
-      target.value = target.substring(0, 140);
+  onLimitTextLenght(event, len) {
+    if (!(event.key === "Backspace")) {
+      console.log(event.target.value);
+      if (event.target.value.length >= len) {
+        event.target.value = event.target.substring(0, len);
+      }
     }
   }
 
@@ -130,17 +141,21 @@ export class NewpostsComponent implements OnInit {
    * DropZone Functions
   */
   onSelect(event, images) {
-    this.files.push(...event.addedFiles);
-    var reader = new FileReader();
-    reader.onload = function () {
-      var dataURL = reader.result;
-      images.push(dataURL);
-    };
-    reader.readAsDataURL(this.files[this.files.length - 1]);
-    
+    if (!this.files.map((e) => { return e.name }).includes(event.addedFiles[0].name)) {
+      this.files.push(...event.addedFiles);
+      var reader = new FileReader();
+      reader.onload = function () {
+        var dataURL = reader.result;
+        images.push(dataURL);
+      };
+      reader.readAsDataURL(this.files[this.files.length - 1]);
+    }else{
+      console.log("Immagine già caricata");
+      this.messageBox.fire("Immagine già caricata!", MsgCode.Warning);
+    }
   }
 
-  
+
   onRemove(index) {
     //let position = this.files.indexOf(event);
     this.postMultimedias.splice(index, 1);
@@ -155,9 +170,9 @@ export class NewpostsComponent implements OnInit {
 
   next() {
     console.log(this.postMultimedias);
-    if(this.currentStep==5){
+    if (this.currentStep == 5) {
       this.onSubmit();
-    }else{
+    } else {
       this.currentStep++;
       this.stepper.next();
     }
@@ -180,16 +195,31 @@ export class NewpostsComponent implements OnInit {
   }
 
   //rename
-  handleCategory(target, category){
-    if(this.model.customFilter.indexOf(category) >-1){
-      target.classList.remove('category-selected');
-      this.model.customFilter.splice(this.model.customFilter.indexOf(category),1);
-    }else{
-      if(this.model.customFilter.length < 3){
-        target.classList.add('category-selected');
+  handleCategory(target, category) {
+    if (this.model.customFilter.indexOf(category) > -1) {
+      this.model.customFilter.splice(this.model.customFilter.indexOf(category), 1);
+    } else {
+      if (this.model.customFilter.length < 3) {
         this.model.customFilter.push(category);
       }
     }
   }
 
+  setPrice(event) {
+    this.prodService.getProducts(this.auth.getUserId(), this.newpostId).subscribe((products: Product[]) => {
+      let min = Infinity;
+      for (let i = 0; i < products.length; i++) {
+        if (products[i].price < min) {
+          min = products[i].price;
+        }
+      }
+      this.model.price = min.toString();
+    })
+  }
+
+  onReset(){
+    this.model = new ProductPost();
+    this.files = [];
+    this.postMultimedias = [];
+  }
 }

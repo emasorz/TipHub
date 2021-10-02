@@ -3,17 +3,16 @@
     <label for="">Selected:</label>
 
     <ul class="opts p-2">
-        <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">{{option.getTitle()}}</li>
+        <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">{{option.title}}</li>
     </ul>
 
 </div>
 
 
-
 <div class="select-grp p-2">
     <label for="" class="mt-2">Possible options:</label>
-    <select (change)="newProduct.thingsCategory[i] = $event.target.value" *ngFor="let select of selected; let i = index" name="{{select.getTitle()}}" id="size">
-        <option value="" selected disabled hidden>{{select.getTitle()}}</option>
+    <select (change)="newProduct.thingsCategory[i] = $event.target.value" *ngFor="let select of selected; let i = index" [name]="select.title" id="size">
+        <option value="" selected disabled hidden>{{select.title}}</option>
         <option *ngFor="let option of select.options" value="{{option}}">{{option}}</option>
     </select>
     <div class="inpt">
@@ -23,18 +22,18 @@
 
     <div class="inpt">
         <label for="">Price</label>
-        <input #price (keyup)="newProduct.price = price.value; limitPrice($event.target)" type="number" class="prc" step="0.01" min="0">
+        <input #price (keyup)="newProduct.price = price.value; limitPrice($event)" type="number" class="prc" step="0.01" min="0">
     </div>
 
     <div class="cmr-btn"><i class="fa fa-camera"></i></div>
-    <button class="btn btn-light border" (click)="createNewProduct()"><i class="fa fa-check"></i></button>
+    <button class="btn btn-light border" (click)="createNewProduct(); quantity.value = null; price.value = null"><i class="fa fa-check"></i></button>
 </div>
 
 
 <div class="sum-opts">
     <ul>
         <li *ngFor="let product of products">
-            <div class="cls-btn"><i class="fa fa-times"></i></div>
+            <div class="cls-btn" (click)="onDelete(product['_id'])" ><i class="fa fa-times"></i></div>
 
             <div class="line-grp">
                 <div class="d-flex flex-row align-items-center" *ngFor="let category of product.thingsCategory; let last = last">

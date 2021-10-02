@@ -1,7 +1,7 @@
 <nav class="m-nav">
     <div class="c">
         <div class="base-b">
-            <div class="wht w-100 container">
+            <div class="wht w-100 container justify-content-around">
                 <img src="../../../../assets/logo.png" alt="" class="logo" height="48" width="48" [routerLink]="['/']">
                 <form class="search align-self-center" action="">
                     <div class="form-group has-search m-0 p-0">
@@ -9,10 +9,12 @@
                         <input (keydown)="enterSubmit($event)" type="text" #search class="form-control" placeholder="Search...">
                     </div>
                 </form>
-                <div *ngIf="!user" class="acs align-self-end">
-                    <a href="" class=" right l-i" [routerLink]="['/login']">Log In</a>
-                    <a href="" class=" right s-i" [routerLink]="['/register']">Sign Up</a>
-                </div>
+                
+                  <div *ngIf="(!user && !isloading); else placeholder" class="acs align-self-end">
+                        <a href="" class=" right l-i" [routerLink]="['/login']">Log In</a>
+                        <a href="" class=" right s-i" [routerLink]="['/register']">Sign Up</a>
+                    </div>
+                    <ng-template #placeholder> <span style="width: 200px; height:20px"></span> </ng-template>
             </div>
         </div>
         <div class="base-w">

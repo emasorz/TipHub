@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import MagicGrid from "magic-grid";
-import { map } from 'rxjs/operators';
 import { ProductPost } from 'src/app/models/productPost.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductPostService } from 'src/app/services/product-post.service';
@@ -16,18 +14,18 @@ import { WebRequestService } from 'src/app/services/web-request.service';
 export class TrendsComponent implements OnInit {
   user: any;
   productPosts: ProductPost[];
+  col = 1;
+  newPostId: string;
 
-  newPostId:string;
 
-
-  constructor(private webService: WebRequestService, private auth: AuthService, private router: Router,private productPostService:ProductPostService) {
+  constructor(private webService: WebRequestService, private auth: AuthService, private router: Router, private productPostService: ProductPostService) {
     this.auth.isLoggedIn().then((user) => {
       if (user[0]) {
         this.user = user[0];
         this.productPostService.getProductPost(this.auth.getUserId(), false)
-          .subscribe((productPosts:ProductPost[]) => {
+          .subscribe((productPosts: ProductPost[]) => {
             this.productPosts = productPosts;
-            this.refresh();
+            this.refreshCol();
           })
       } else {
         console.log("redirecting");
@@ -38,49 +36,35 @@ export class TrendsComponent implements OnInit {
     })
   }
 
-  // () {
-  //   let userId = this.user['_id'];
-  //   return this.webService.get(`users/${userId}/productposts?isADraft=true`)
-  //     .pipe(
-  //       map((data: any) => {
-  //         return data.map((productPost:ProductPost) => {
-  //            return productPost;
-  //         });
-  //       }),
-  //     )
-  // }
+  refreshCol() {
+    if (this.productPosts.length > 0)
+      this.col = 2
+    else
+      this.col = 1;
+  }
 
-  magicGridTrends: any;
-  posts: ProductPost[];
 
   ngOnInit(): void {
 
   }
 
-  initProductPost(){
-    this.productPostService.createProductPost(this.auth.getUserId(), new ProductPost()).subscribe((newProductPost:ProductPost)=>{
+  initProductPost() {
+    this.productPostService.createProductPost(this.auth.getUserId(), new ProductPost()).subscribe((newProductPost: ProductPost) => {
       this.newPostId = newProductPost['_id'];
     })
   }
 
-  ngAfterContentInit(): void {
-    setTimeout(() => {
-      this.magicGridTrends = new MagicGrid({
-        container: '.merch-grid-trends',
-        animate: true,
-        gutter: 30,
-        static: true,
-        useMin: true
-      });
-
-      this.magicGridTrends.listen();
-      this.refresh();
-    }, 800);
-
+  addProductPost(newPost) {
+    console.log("evento output triggerato", newPost);
+    this.productPosts.push(newPost);
+    this.refreshCol();
   }
 
-  refresh(): void {
-    setTimeout(() => this.magicGridTrends.positionItems(), 300);
+  onDelete(post,postId: string) {
+    console.log(post);
+    this.productPostService.deleteProductPost(this.auth.getUserId(), postId).subscribe((deletedProductPost: ProductPost) => {
+      this.productPosts.splice(this.productPosts.map((e) => { return e['_id'] }).indexOf(postId), 1);
+      this.refreshCol();
+    });
   }
-
 }

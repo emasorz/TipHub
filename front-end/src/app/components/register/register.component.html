@@ -45,7 +45,7 @@
                 <ngx-spinner *ngIf="isLoading else text" bdColor = "rgba(255,255 ,255 , 0)" size = "small" color = "#fff" type = "ball-spin" [fullScreen] = "false"></ngx-spinner>
                 <ng-template #text><span>Register</span></ng-template>
             </button> {{registerForm.valid}}
-            <span class="min-text"> By signing up, you agree to Patreon's <a data-toggle="modal"data-target="#exampleModalLong">Terms of Use</a>, <a>Privacy Policy</a>  and <a>Cookie Policy.</a> </span>
+            <span class="min-text"> By signing up, you agree to Tiphub's <a data-toggle="modal"data-target="#termModalLong">Terms of Use</a>, <a data-toggle="modal"data-target="#privacyModalLong">Privacy Policy</a>  and <a data-toggle="modal"data-target="#cookieModalLong">Cookie Policy.</a> </span>
 
             <label class="line-label"><span>or</span></label>
 
@@ -60,11 +60,62 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="termModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Term of use</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda
+                porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum
+                exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore
+                fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="privacyModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Privacy and Policy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nostrum voluptate quod rem iste expedita laborum exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda
+                porro numquam recusandae illum inventore fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate quod rem iste expedita laborum
+                exercitationem facere earum cumque vitae ipsa officiis pariatur alias, culpa repudiandae. Qui excepturi nemo repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ex assumenda porro numquam recusandae illum inventore
+                fuga sit deserunt ratione. Corporis dolor ratione possimus enim nemo maxime ipsa, quia fuga?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="cookieModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cookie Policy</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -1,0 +1,23 @@
+[{
+    
+        "options": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+       
+        "title": "Size"
+    },
+    {
+    
+        "options": [
+            "Other",
+            "Female",
+            "Male"
+        ],
+       
+        "title": "Sex"
+    }
+]

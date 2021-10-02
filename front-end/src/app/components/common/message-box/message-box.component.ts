@@ -46,5 +46,9 @@ export class MessageBoxComponent implements OnInit {
     this.isVisible = false;
   }
 
+  onDelete(){
+    this.content = "";
+    this.isVisible = false;
+  }
 
 }

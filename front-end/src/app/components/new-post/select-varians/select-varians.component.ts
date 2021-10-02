@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebRequestService } from 'src/app/services/web-request.service';
 import { Option } from 'src/app/models/option.model';
@@ -8,19 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProductService } from 'src/app/services/product.service';
+var  defaultVariantsOptions = require('../../../../assets/defaults/variantsoptions.default.json');
 
-
-export class User {
-  email: string;
-  id: number;
-  name: string;
-  phone: string;
-  username: string;
-
-  constructor(user: User) {
-    Object.assign(this, user);
-  }
-}
 
 @Component({
   selector: 'app-select-varians',
@@ -36,10 +26,10 @@ export class SelectVariansComponent implements OnInit {
   @Input() images;
   @Input() postId;
 
-  constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient, private auth: AuthService) {
-    let userId = '60efccf23f045226ac85337b';
-    let productPostId = '610007be58ce5f248037e126';
-    this.options = [];
+  @Output() setPriceEmit = new EventEmitter<number>();
+
+  constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient, private auth: AuthService, private prodService:ProductService) { 
+    this.options = JSON.parse(JSON.stringify(defaultVariantsOptions)) ;
     this.spinner.show();
     this.selected = [];
     this.newProduct = new Product();
@@ -47,46 +37,25 @@ export class SelectVariansComponent implements OnInit {
 
     //todo refactor: servizio a parte
     this.webService.get(`users/${this.auth.getUserId()}/variantsoptions`).subscribe((res: any) => {
+
+      console.log(this.auth.getUserId());
       console.log("Risposta:", res);
       if (res && res.length >= 0) {
         this.spinner.hide();
         for (let i = 0; i < res.length; i++) {
           this.options.push(new Option(res[i].title, res[i].options));
-        
         }
       }
-    })
 
-    //todo refactor
-    this.getProduct()
-      .subscribe((products: Product[]) => {
+      this.prodService.getProducts(this.auth.getUserId(), this.postId).subscribe((products:Product[])=>{
         console.log(products);
         this.products = products;
-      });
-
+      })
+    })
   }
 
   ngOnInit(): void { }
 
-  getProduct(): Observable<Product[]> {
-    let userId = '60efccf23f045226ac85337b';
-    let productPostId = '610007be58ce5f248037e126';
-    return this.webService.get(`users/${this.auth.getUserId()}/productposts/${this.postId}/product`)
-      .pipe(
-      
-        map((data: any) => {
-          console.log(data);
-          return data.map((product) => {
-            return new Product({
-              price: product['price'],
-              quantity: product['quantity'],
-              thingsCategory: product['thingsCategory'],
-              img: product['img']
-            });
-          });
-        }),
-      )
-  }
 
   onSelectedClick(target, option: Option) {
     if (target.classList.contains('select')) {
@@ -98,27 +67,27 @@ export class SelectVariansComponent implements OnInit {
     }
   }
 
-  createNewProduct(){
-    let userId = '60efccf23f045226ac85337b';
-    let productPostId = '610007be58ce5f248037e126';
-    this.webService.post(`users/${this.auth.getUserId()}/productposts/${this.postId}/product`, this.newProduct).subscribe((res)=>{
-      console.log(res);
-      this.products.push(this.newProduct);
+  onDelete(productId){
+    this.prodService.deleteProduct(this.auth.getUserId(),this.postId,  productId).subscribe(res=>{
+      console.log(this.products);
+      console.log(this.products.map((e) =>{return e['_id']}).indexOf(productId));
+      this.products.splice(this.products.map((e) =>{return e['_id']}).indexOf(productId ),1);
     })
   }
 
-  limitPrice(target){
-    let value = target.value;
-
-    let number = target.value.toString();
-
-    if(number.includes('.')){
-      let a = Math.floor(value);
-      number = number.split('.');
-      console.log(number);
-      console.log(number[1].length);
-    }
-
-   
+  createNewProduct(){
+    this.prodService.postProduct(this.auth.getUserId(),this.postId, this.newProduct).subscribe((res:Product)=>{
+      this.products.push(res);
+      this.setPriceEmit.emit(this.postId);
+    })
   }
+
+  limitPrice(event){
+    let value = event.target.value;
+    let decimal = value - Math.floor(value);
+    if(decimal > 0 && event.key != 'Backspace')
+      event.target.value = parseFloat(event.target.value).toFixed(2);   
+  }
+
+
 }

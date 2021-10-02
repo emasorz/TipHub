@@ -1,3 +1,4 @@
-<div *ngIf="isVisible" class="alert small" [ngClass]="classTypes[code]" role="alert">
+<div *ngIf="isVisible" class="alert small position-relative" [ngClass]="classTypes[code]" role="alert">
     {{content}}
+    <span class="position-absolute pointer" style="right:8px; top:5px" (click)="onDelete()"><i class="fa fa-times"></i></span>
 </div>

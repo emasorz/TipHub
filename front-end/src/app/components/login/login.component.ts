@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.authService.login(this.email, this.password).subscribe(res => {
       console.log(res);
-      if(res.ok){
+      if(!res.body.error){
         this.messageBox.fire("Log in avvenuto con successo! Puoi andare sul tuo profilo da", MsgCode.Success);
-        this.router.navigate(['/profile/emasorz']);
+        window.location.href = '/profile/emasorz';
       }else{
-        this.messageBox.fire("Qualcosa è andato storto! Riprova controllando che email e password siano corrette!", MsgCode.Danger);
+        this.messageBox.fire("Qualcosa è andato storto: " + res.body.error, MsgCode.Danger);
       }
       this.spinner.hide();
       this.isLoading = false;
