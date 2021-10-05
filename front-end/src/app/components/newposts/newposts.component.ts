@@ -13,7 +13,7 @@ import { ProductPost } from 'src/app/models/productPost.model';
 import { ProductPostService } from 'src/app/services/product-post.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
-import { MessageBoxComponent, MsgCode} from '../common/message-box/message-box.component';
+import { MessageBoxComponent, MsgCode } from '../common/message-box/message-box.component';
 
 
 @Component({
@@ -102,7 +102,6 @@ export class NewpostsComponent implements OnInit {
       if (res && res.length > 0) {
         for (let i = 0; i < res.length; i++) {
           this.options.push(new Option(res[i].title, res[i].options));
-          this.spinner.hide();
         }
       }
     })
@@ -130,7 +129,7 @@ export class NewpostsComponent implements OnInit {
     if (!(event.key === "Backspace")) {
       console.log(event.target.value);
       if (event.target.value.length >= len) {
-        event.target.value = event.target.substring(0, len);
+        event.target.value = event.target.value.substring(0, len);
       }
     }
   }
@@ -141,20 +140,40 @@ export class NewpostsComponent implements OnInit {
    * DropZone Functions
   */
   onSelect(event, images) {
-    if (!this.files.map((e) => { return e.name }).includes(event.addedFiles[0].name)) {
-      this.files.push(...event.addedFiles);
-      var reader = new FileReader();
-      reader.onload = function () {
-        var dataURL = reader.result;
-        images.push(dataURL);
-      };
-      reader.readAsDataURL(this.files[this.files.length - 1]);
-    }else{
-      console.log("Immagine già caricata");
-      this.messageBox.fire("Immagine già caricata!", MsgCode.Warning);
+    this.spinner.show();
+    if (event.rejectedFiles.length > 0) {
+      this.messageBox.fire("Immagine troppo grande!", MsgCode.Warning);
+    } else {
+      for(var i = 0; i< event.addedFiles.length; i++){
+        if(this.files.map((e) => { return e.name }).includes(event.addedFiles[i].name)){
+          event.addedFiles.splice(i,1);
+          this.messageBox.fire("uno o più immagini sono già state caricate!", MsgCode.Warning);
+        }
+      }
+        this.files.push(...event.addedFiles);
+        this.readmultifiles(event.addedFiles, images);
+
+        this.spinner.hide();
     }
   }
 
+  //recursive funtion
+  private readmultifiles(files, images) {
+    var reader = new FileReader();  
+    function readFile(index) {
+      if( index >= files.length ) {
+        return;
+      }
+      var file = files[index];
+      reader.onload = function() {  
+        var dataURL = reader.result;
+        images.push(dataURL);
+        readFile(index+1)
+      }
+      reader.readAsDataURL(file);
+    }
+    readFile(0);
+  }
 
   onRemove(index) {
     //let position = this.files.indexOf(event);
@@ -217,9 +236,23 @@ export class NewpostsComponent implements OnInit {
     })
   }
 
-  onReset(){
+  onReset() {
     this.model = new ProductPost();
     this.files = [];
     this.postMultimedias = [];
+    this.currentStep = 1;
+    this.stepper.reset();
+
+    this.prodPostService.deleteProductPost(this.auth.getUserId(), this.newpostId).subscribe((deletedProdPost:ProductPost)=>{
+      console.log(deletedProdPost);
+      if(deletedProdPost){
+        this.prodPostService.createProductPost(this.auth.getUserId(), new ProductPost()).subscribe((newProductPost:ProductPost)=>{
+          console.log(newProductPost);
+          if(newProductPost)
+            this.newpostId = newProductPost['_id'];
+        })
+      }
+    })
+    console.log(this.category);
   }
 }

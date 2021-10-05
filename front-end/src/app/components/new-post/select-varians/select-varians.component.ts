@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { WebRequestService } from 'src/app/services/web-request.service';
 import { Option } from 'src/app/models/option.model';
@@ -22,10 +22,12 @@ export class SelectVariansComponent implements OnInit {
   selected: Option[];
   products: Product[];
   newProduct: Product;
-
+  handleImg: boolean;
   @Input() images;
   @Input() postId;
 
+
+  @ViewChild('camera') camera: ElementRef<HTMLElement>
   @Output() setPriceEmit = new EventEmitter<number>();
 
   constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient, private auth: AuthService, private prodService:ProductService) { 
@@ -34,6 +36,7 @@ export class SelectVariansComponent implements OnInit {
     this.selected = [];
     this.newProduct = new Product();
     this.products = [];
+    this.handleImg = true;
 
     //todo refactor: servizio a parte
     this.webService.get(`users/${this.auth.getUserId()}/variantsoptions`).subscribe((res: any) => {
@@ -89,5 +92,9 @@ export class SelectVariansComponent implements OnInit {
       event.target.value = parseFloat(event.target.value).toFixed(2);   
   }
 
+  cameraClick(){
+    let el: HTMLElement = this.camera.nativeElement;
+    el.click();
+  }
 
 }

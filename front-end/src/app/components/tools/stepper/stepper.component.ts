@@ -59,4 +59,9 @@ export class StepperComponent implements  AfterViewInit {
   counter(dim) {
     return [...Array(dim)];
   }
+
+  reset(){
+    this.currentActive = 1;
+    this.update();
+  }
 }

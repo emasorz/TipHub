@@ -4,7 +4,7 @@ export class ProductPost{
     description:string;
     isADraft:boolean;
     img:string;
-    customFilter:string[];
+    customFilter:string[] = [];
     userId:string;
     linkSocials:string[];
     price:string;

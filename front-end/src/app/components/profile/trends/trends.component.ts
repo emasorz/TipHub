@@ -67,4 +67,8 @@ export class TrendsComponent implements OnInit {
       this.refreshCol();
     });
   }
+
+  redirectToPost(postId){
+    this.router.navigate(['/profile', 'name', 'product', postId]);
+  }
 }

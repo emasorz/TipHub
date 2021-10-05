@@ -1,42 +1,68 @@
-<ngx-spinner bdColor="rgba(0,0 ,0 , 0)" size="medium" color="#000" type="ball-clip-rotate" [fullScreen]="false"></ngx-spinner>
+<ngx-spinner bdColor="rgba(0,0 ,0 , 0)" size="medium" color="#000" type="ball-clip-rotate" [fullScreen]="false">
+</ngx-spinner>
 <div class="select-grp p-2">
     <label for="">Selected:</label>
 
     <ul class="opts p-2">
-        <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">{{option.title}}</li>
+        <li class="opt text-capitalize" (click)="onSelectedClick($event.target, option)" *ngFor="let option of options">
+            {{option.title}}</li>
     </ul>
 
 </div>
 
 
-<div class="select-grp p-2">
-    <label for="" class="mt-2">Possible options:</label>
-    <select (change)="newProduct.thingsCategory[i] = $event.target.value" *ngFor="let select of selected; let i = index" [name]="select.title" id="size">
-        <option value="" selected disabled hidden>{{select.title}}</option>
-        <option *ngFor="let option of select.options" value="{{option}}">{{option}}</option>
-    </select>
-    <div class="inpt">
-        <label for="">Quantity</label>
-        <input #quantity (keyup)="newProduct.quantity = quantity.value" type="number" class="qnty">
-    </div>
+<div>
+    <form class="select-grp p-2"  (ngSubmit)="createNewProduct()">
+        <label for="" class="mt-2">Possible options:</label>
+        <select (change)="newProduct.thingsCategory[i] = $event.target.value"
+            *ngFor="let select of selected; let i = index" [name]="select.title" id="size">
+            <option value="" selected disabled hidden>{{select.title}}</option>
+            <option *ngFor="let option of select.options" value="{{option}}">{{option}}</option>
+        </select>
+    
+        
+        <div class="inpt">
+            <label for="">Price</label>
+            <input type="number" [ngModel]="newProduct.price" #price   name="price">
+        </div>
 
-    <div class="inpt">
-        <label for="">Price</label>
-        <input #price (keyup)="newProduct.price = price.value; limitPrice($event)" type="number" class="prc" step="0.01" min="0">
-    </div>
+        <div class="inpt">
+            <label for="">Quantity</label>
+            <input #quantity (keyup)="newProduct.quantity = quantity.value;" type="number" class="prc"
+                step="0.01" min="0">
+        </div>
 
-    <div class="cmr-btn"><i class="fa fa-camera"></i></div>
-    <button class="btn btn-light border" (click)="createNewProduct(); quantity.value = null; price.value = null"><i class="fa fa-check"></i></button>
+
+        <a *ngIf="images.length > 0"  #camera data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="cmr-btn"><i class="fa fa-camera" ></i></a>
+        <img  class="rounded border m-1" [src]="newProduct.img || '../../../../assets/default-image-620x600.jpg'" alt="" width="40">
+        <button class="btn btn-light border" type="submit"><i
+                class="fa fa-check"></i></button>
+    </form>
 </div>
 
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div class="container cntr">
+            <div class="flex-wrap">
+                <div class="pointer " (click)="newProduct.img = img; cameraClick()" class="img-crd" *ngFor="let img of images; let i = index">
+                    <div class="frame pointer" [ngClass]="{'img-selected': img == newProduct.img}">
+                        <img [src]="img" alt="" width="100">
+                    </div>
+                    <label for="">Associato to variant</label>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 
 <div class="sum-opts">
     <ul>
         <li *ngFor="let product of products">
-            <div class="cls-btn" (click)="onDelete(product['_id'])" ><i class="fa fa-times"></i></div>
+            <div class="cls-btn" (click)="onDelete(product['_id'])"><i class="fa fa-times"></i></div>
 
             <div class="line-grp">
-                <div class="d-flex flex-row align-items-center" *ngFor="let category of product.thingsCategory; let last = last">
+                <div class="d-flex flex-row align-items-center"
+                    *ngFor="let category of product.thingsCategory; let last = last">
                     <div class="opt">{{category}}</div>
                     <i *ngIf="!last" class="fa fa-plus"></i>
                 </div>
@@ -48,7 +74,7 @@
                 <div class="opt-q">{{product.quantity}}</div>
             </div>
 
-            <img [src]="product.img" alt="" width="32">
+            <img [src]="product.img || '../../../../assets/default-image-620x600.jpg'" alt="" width="32">
         </li>
     </ul>
 </div>

@@ -131,3 +131,40 @@
 .opt {
     cursor: pointer;
 }
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.cntr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-crd {
+    margin: 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.frame {
+    height: 8.2em;
+    width: 8.2em;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.img-crd input {
+    margin: 0.2em;
+}
+
+.img-selected{
+    border: 2px solid #06D6A0;;
+}

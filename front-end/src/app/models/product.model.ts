@@ -11,7 +11,7 @@ export class Product{
         else{
             this.price = 0;
             this.quantity = 0;
-            this.img = '../../../../assets/jacket.jpg';
+            this.img = undefined;
             this.thingsCategory = [];
         }
       }
