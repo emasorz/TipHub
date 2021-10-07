@@ -13,11 +13,13 @@ export class LoginComponent implements OnInit {
   email:string;
   password:string;
   isLoading:boolean;
+  rememberMe:boolean;
 
   @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
 
   constructor(private authService:AuthService, private spinner: NgxSpinnerService, private router: Router) { 
     this.isLoading = false;
+    this.rememberMe = false;
   }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.isLoading = true;
     this.spinner.show();
-    this.authService.login(this.email, this.password).subscribe(res => {
+    this.authService.login(this.email, this.password, this.rememberMe).subscribe(res => {
       console.log(res);
       if(!res.body.error){
         this.messageBox.fire("Log in avvenuto con successo! Puoi andare sul tuo profilo da", MsgCode.Success);

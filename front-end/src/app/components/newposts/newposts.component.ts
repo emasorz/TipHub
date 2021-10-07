@@ -14,6 +14,7 @@ import { ProductPostService } from 'src/app/services/product-post.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { MessageBoxComponent, MsgCode } from '../common/message-box/message-box.component';
+import { SelectVariansComponent } from '../new-post/select-varians/select-varians.component';
 
 
 @Component({
@@ -64,6 +65,7 @@ export class NewpostsComponent implements OnInit {
 
   @ViewChild(StepperComponent) stepper: StepperComponent;
   @ViewChild(MessageBoxComponent) messageBox: MessageBoxComponent;
+  @ViewChild(SelectVariansComponent) seleectVariants: SelectVariansComponent;
 
   @ViewChild('mydiv') set div(div: ElementRef) {
     if (div) {
@@ -83,6 +85,8 @@ export class NewpostsComponent implements OnInit {
   tags = [];
   options: Option[];
   selected = [];
+ 
+  ok2step:boolean;
 
   constructor(private webService: WebRequestService,
     private spinner: NgxSpinnerService,
@@ -93,6 +97,7 @@ export class NewpostsComponent implements OnInit {
     this.isOptions = false;
     this.model = new ProductPost();
     this.model.customFilter = [];
+    this.ok2step = false;
 
 
     //refactor option own model and service
@@ -114,6 +119,7 @@ export class NewpostsComponent implements OnInit {
     this.model.img = this.postMultimedias[this.selectedImg];
     console.log(this.model);
     this.prodPostService.patchProductPost(this.auth.getUserId(), this.newpostId, this.model).subscribe((newProductpost: ProductPost) => {
+      console.log(newProductpost);
       newProductpost['_id'] = this.newpostId;
       this.newPostEvent.emit(newProductpost);
       this.onReset();
@@ -134,7 +140,9 @@ export class NewpostsComponent implements OnInit {
     }
   }
 
-
+blockNext(f){
+    this.ok2step = f.form.valid;
+}
 
   /**
    * DropZone Functions
@@ -152,9 +160,8 @@ export class NewpostsComponent implements OnInit {
       }
         this.files.push(...event.addedFiles);
         this.readmultifiles(event.addedFiles, images);
-
-        this.spinner.hide();
     }
+    this.spinner.hide();
   }
 
   //recursive funtion
@@ -188,7 +195,6 @@ export class NewpostsComponent implements OnInit {
    */
 
   next() {
-    console.log(this.postMultimedias);
     if (this.currentStep == 5) {
       this.onSubmit();
     } else {
@@ -242,17 +248,18 @@ export class NewpostsComponent implements OnInit {
     this.postMultimedias = [];
     this.currentStep = 1;
     this.stepper.reset();
-
-    this.prodPostService.deleteProductPost(this.auth.getUserId(), this.newpostId).subscribe((deletedProdPost:ProductPost)=>{
-      console.log(deletedProdPost);
-      if(deletedProdPost){
-        this.prodPostService.createProductPost(this.auth.getUserId(), new ProductPost()).subscribe((newProductPost:ProductPost)=>{
-          console.log(newProductPost);
-          if(newProductPost)
-            this.newpostId = newProductPost['_id'];
-        })
-      }
-    })
+    this.ok2step = false;
+    // this.prodPostService.deleteProductPost(this.auth.getUserId(), this.newpostId).subscribe((deletedProdPost:ProductPost)=>{
+    //   console.log(deletedProdPost);
+    //   if(deletedProdPost){
+    //     this.prodPostService.createProductPost(this.auth.getUserId(), new ProductPost()).subscribe((newProductPost:ProductPost)=>{
+    //       console.log(newProductPost);
+    //       if(newProductPost)
+    //         this.newpostId = newProductPost['_id'];
+    //     })
+    //   }
+    // })
+    this.seleectVariants.clearInput();
     console.log(this.category);
   }
 }

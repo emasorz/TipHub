@@ -60,18 +60,19 @@
                     </div>
                     <div  (click)="redirectToPost(post['_id'])" class="pointer">
                         <div class="img-desc d-flex flex-column justify-content-center align-items-center">
-                            <img src="{{post.img}}" class="pointer" alt="merch image" width="130">
-                            <p>{{post.description}}</p>
+                            <img *ngIf="post.img" src="{{post.img}}" class="pointer" alt="merch image" width="130">
+                            <h5 class="m-1">{{post.title}}</h5>
                         </div>
-                        <h5>{{post.title}}</h5>
-                        <a *ngIf="post.price > 0" data-toggle="collapse" href="#collapseExample-{{i}}" role="button"
-                            aria-expanded="false" [attr.aria-controls]="'collapseExample-'+ i">
-                            Show Price
-                        </a>
-                        <div class="collapse" id="collapseExample-{{i}}">
-                            <span>A partire da:</span>
-                            <span class="price">{{post.price}}</span>
-                        </div>
+                        <p>{{post.description}}</p>
+                       
+                    </div>
+                    <a *ngIf="post.price > 0" data-toggle="collapse" href="#collapseExample-{{i}}" role="button"
+                        aria-expanded="false" [attr.aria-controls]="'collapseExample-'+ i">
+                        Show Price
+                    </a>
+                    <div class="collapse" id="collapseExample-{{i}}">
+                        <span>A partire da:</span>
+                        <span class="price">{{post.price}}</span>
                     </div>
                 </div>
             </div>

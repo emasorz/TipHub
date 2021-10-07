@@ -12,14 +12,16 @@ export class AuthService {
 
   constructor(private webService: WebRequestService, private router: Router, private http: HttpClient, private crypto: CryptoService) { }
 
-  login(email: string, password: string) {
+  login(email: string, password: string, remeberMe:boolean) {
     return this.webService.login(email, password).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
         // the auth tokens will be in the header of this response
         console.log(res);
-        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+        if(!res.body.error){
+          this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'), remeberMe);
         console.log("LOGGED IN!");
+        }
       })
     )
   }
@@ -29,7 +31,7 @@ export class AuthService {
       shareReplay(),
       tap((res: HttpResponse<any>) => {
         // the auth tokens will be in the header of this response
-        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'));
+        this.setSession(res.body._id, res.headers.get('x-access-token'), res.headers.get('x-refresh-token'), true);
         console.log("Successfully signed up and now logged in!");
       })
     )
@@ -78,10 +80,11 @@ export class AuthService {
     localStorage.setItem('x-access-token', accessToken)
   }
 
-  private setSession(userId: string, accessToken: string, refreshToken: string) {
+  private setSession(userId: string, accessToken: string, refreshToken: string, rememberMe:boolean) {
     localStorage.setItem('user-id', this.crypto.set(userId));
     localStorage.setItem('x-access-token', accessToken);
-    localStorage.setItem('x-refresh-token', refreshToken);
+    if(rememberMe)
+      localStorage.setItem('x-refresh-token', refreshToken);
   }
 
   private removeSession() {

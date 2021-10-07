@@ -7,7 +7,7 @@
             <input type="text" placeholder="E-mail" id="emial" required [(ngModel)]="email" name="email" #mail="ngModel">
             <input type="password" placeholder="Password" id="password" required [(ngModel)]="password" name="password" #pswrd="ngModel">
             <div class="justify-around">
-                <span><input type="checkbox">Remember me</span>
+                <label for="rememberMe"><input type="checkbox" id="rememberMe" required [checked]="rememberMe" [(ngModel)]="rememberMe" name="rememberMe">Remember me</label>
                 <a>Forgot Password?</a>
             </div>
             <button type="submit" class="primary-btn" style="position: relative; min-height: 36px;">

@@ -31,7 +31,7 @@
     <!-- second step -->
     <div *ngIf="currentStep == 2" class="step-2">
         <div class="container">
-            <form name="form" class="" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate autocomplete="off">
+            <form name="form" class="" (input)="blockNext(f)" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate autocomplete="off">
                 <div class="d-flex flex-row align-items-end pb-3 mb-1 position-relative">
                     <img *ngIf="postMultimedias[selectedImg]" class="border rounded p-1" [src]="postMultimedias[selectedImg]" alt="" width="100" height="100">
                     <input class="w-100 ml-3 pl-4" #ttl type="text" (keyup)="onLimitTextLenght($event, 70)" placeholder="Inserisci Titolo" name="title" class="form-control" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
@@ -61,8 +61,6 @@
                     </div>
                 </div> -->
             </form>
-
-            {{f.valid}}
         </div>
     </div>
 
@@ -87,7 +85,7 @@
     <!-- last step -->
     <div *ngIf="currentStep == 5" class="step-5">
         <div class="grid" #mydiv>
-            <div class="grid-item" style="height: 200px; width: 200px;">
+            <div *ngIf="postMultimedias[selectedImg]" class="grid-item" style="height: 200px; width: 200px;">
                 <img class="border rounded p-1" [src]="postMultimedias[selectedImg]" alt="" style="width: 100%;height: 100%;">
             </div>
             <div class="grid-item grid-item--height1 text-center d-flex align-items-center justify-content-center" style="width: 500px; height: 100px;">
@@ -106,6 +104,6 @@
     <!-- data-dismiss="modal" -->
     <button type="button" class="btn btn-secondary float-left"  (click)="onReset()">Clear Post</button>
     <button type="button" class="btn btn-secondary" (click)="prev()">Prev</button>
-    <button *ngIf="currentStep != 5; else submit" type="button" class="btn btn-primary" (click)="next();">Next</button>
+    <button *ngIf="currentStep != 5; else submit" [disabled]="currentStep ==2 && !ok2step" type="button" class="btn btn-primary" (click)="next();">Next</button>
     <ng-template #submit > <button type="button" class="btn btn-primary" (click)="onSubmit();" data-dismiss="modal" aria-label="Close">Submit</button></ng-template>
 </div> 

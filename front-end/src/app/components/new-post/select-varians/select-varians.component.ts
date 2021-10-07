@@ -28,6 +28,8 @@ export class SelectVariansComponent implements OnInit {
 
 
   @ViewChild('camera') camera: ElementRef<HTMLElement>
+  @ViewChild('price') price: ElementRef;
+  @ViewChild('quantity') quantity: ElementRef;
   @Output() setPriceEmit = new EventEmitter<number>();
 
   constructor(private spinner: NgxSpinnerService, private webService: WebRequestService, private http: HttpClient, private auth: AuthService, private prodService:ProductService) { 
@@ -81,16 +83,47 @@ export class SelectVariansComponent implements OnInit {
   createNewProduct(){
     this.prodService.postProduct(this.auth.getUserId(),this.postId, this.newProduct).subscribe((res:Product)=>{
       this.products.push(res);
+      this.clearInput();
       this.setPriceEmit.emit(this.postId);
     })
   }
 
-  limitPrice(event){
-    let value = event.target.value;
-    let decimal = value - Math.floor(value);
-    if(decimal > 0 && event.key != 'Backspace')
-      event.target.value = parseFloat(event.target.value).toFixed(2);   
-  }
+ checkPriceInput(el) {
+   console.log(el.value);
+   var clean;
+
+  if((el.value.split(".").length - 1) > 1)
+    clean = el.value.substring(0, el.value.length-1);
+  else
+    clean = el.value.replace(/[^0-9.]/g, "");
+
+    console.log(clean.split("."));
+    if(clean.split(".").length > 1){
+      console.log("comma");
+      var len = clean.split(".")[1].length;
+      if(len > 2){
+        clean = clean.substring(0,clean.length-(len-2));
+      }
+    }
+
+    if (clean !== el.value) el.value = clean;
+
+    console.log(parseFloat(el.value));
+    this.newProduct.price = parseFloat(el.value);
+}
+
+checkQuantityInput(el){
+  var  clean = el.value.replace(/[^0-9]/g, "");
+  if (clean !== el.value) el.value = clean;
+
+  this.newProduct.quantity = parseInt(el.value);
+}
+
+
+clearInput(){
+  this.price.nativeElement.value =  "";
+  this.quantity.nativeElement.value = "";
+}
 
   cameraClick(){
     let el: HTMLElement = this.camera.nativeElement;

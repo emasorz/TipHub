@@ -55,7 +55,7 @@ export class TrendsComponent implements OnInit {
   }
 
   addProductPost(newPost) {
-    console.log("evento output triggerato", newPost);
+    
     this.productPosts.push(newPost);
     this.refreshCol();
   }

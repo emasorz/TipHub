@@ -23,12 +23,12 @@
         
         <div class="inpt">
             <label for="">Price</label>
-            <input type="number" [ngModel]="newProduct.price" #price   name="price">
+            <input type="text" (input)="checkPriceInput($event.target)" #price   name="price">
         </div>
 
         <div class="inpt">
             <label for="">Quantity</label>
-            <input #quantity (keyup)="newProduct.quantity = quantity.value;" type="number" class="prc"
+            <input (input)="checkQuantityInput($event.target)" #quantity type="text" class="prc"
                 step="0.01" min="0">
         </div>
 
